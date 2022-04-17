@@ -1,1 +1,11 @@
+# data, as too large to upload to github
 Data
+
+
+# pycache
+__pycache__
+*/__pycache__
+*/*/__pycache__
+*/*/*/__pycache__
+*/*/*/*/__pycache__
+*/*/*/*/__pycache__
