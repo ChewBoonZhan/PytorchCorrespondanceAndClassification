@@ -1,5 +1,7 @@
 # data, as too large to upload to github
-Data
+Data/OriginalData/BBOX_Record
+Data/OriginalData/Multiview_jpg
+Data/ProcessedData/SIFT_try
 
 
 # pycache
