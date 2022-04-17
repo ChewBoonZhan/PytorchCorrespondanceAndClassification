@@ -28,4 +28,4 @@ Please do not leave any spaces in between folder and file names. This might inte
 
 
 ### How to get started adding code in?
-You may refer [here](https://github.com/ChewBoonZhan/PytorchCorrespondanceAndClassification/blob/main/Correspondance/Methods/Best_Exhaustive_search/main.py) to get an example of how the code works. Good luck.
+You may refer [here](https://github.com/ChewBoonZhan/PytorchCorrespondanceAndClassification/blob/main/Correspondance/Methods/Example_method/main.py) to get an example of how the code works. Good luck.
