@@ -18,9 +18,14 @@ If during the development of the project you face dependency issue, please searc
 <br />
 
 ### Folder structures
+<b>Important notice</b> <br />
+Please do not leave any spaces in between folder and file names. This might interfere with running the code in Anaconda. Thanks.
+<br />
+
 1. Classification - Script that was tried for classification of seeds between good and bad seed
 2. Correspondance - Scripts that was tried for estimating correspondance between 2 input seed
 3. Data - Data to used perform classification and correspondance for the coursework.
+
 
 ### How to get started adding code in?
 You may refer [here](https://github.com/ChewBoonZhan/PytorchCorrespondanceAndClassification/blob/main/Correspondance/Methods/Best_Exhaustive_search/main.py) to get an example of how the code works. Good luck.
