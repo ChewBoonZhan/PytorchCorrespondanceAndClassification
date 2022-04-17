@@ -1,7 +1,7 @@
 import sys
 import os
 
-sys.path.insert(0, os.getcwd() + '\..\..\..\General_Helper_Function')
+sys.path.insert(0, os.getcwd() + '/../../../General_Helper_Function')
 # example of import function from another folder
 
 # import the function itself

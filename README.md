@@ -1,5 +1,17 @@
 ## Computer Vision (COMP3029 UNMC) (SPM1 21-22) Coursework
 
+### Cloning this repo
+You can clone this repo by doing the following command:
+```
+git clone https://github.com/ChewBoonZhan/PytorchCorrespondanceAndClassification.git
+```
+
+### Pushing to the github repo
+1. git pull origin main
+2. git add .
+3. git commit -m "Things to commit"
+4. git push origin main
+
 ### Downloading files
 To use this project, first lets download some data and put them in the right directory, so testings can be runned on the script in this repository. 
 1. Go to [here](https://drive.google.com/drive/folders/1vkl0nrNKU9jhR6HM7tz6xdHWJxXhpII1?usp=sharing) to download image dataset used in this coursework. This dataset is different from the one in Moodle, as images have been rotated to make sure all images are in the correct orientation as the label of the image. The downloaded folder is to be inserted at "Data/OriginalData"
