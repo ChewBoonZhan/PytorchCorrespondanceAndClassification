@@ -14,7 +14,7 @@ def cropSideNoise(seedImageCollection, seedType, imageViewAngle, setNumber):
   #retrieve bbox csv of original images
   csv_header = ["placeholder", "x_min", "y_min", "x_max", "y_max", "pad"]
   
-  file_path = "BBOX_Record/" + seedType + "/set" + str(setNumber) + "/" + imageViewAngle + "/"
+  file_path = os.getcwd() + "/../Data/OriginalData/BBOX_Record/" + seedType + "/set" + str(setNumber) + "/" + imageViewAngle + "/"
   df = pd.read_csv(file_path + "bbox_record.csv")
   x_min = np.array(df.iloc[:,1].values)
   y_min = np.array(df.iloc[:,2].values)
@@ -78,7 +78,7 @@ def cropSideNoise(seedImageCollection, seedType, imageViewAngle, setNumber):
   seedTypeWrite = seedType
 
   seedTypeWrite = seedTypeWrite.replace(seedTypeWrite[0], seedTypeWrite[0].upper(), 1)
-  outPath = os.getcwd() + "SIFT_try/BBOX/" + seedTypeWrite + "/S" + str(setNumber) +"/" +  imageViewAngle + "/"   # TODO: Change path here
+  outPath = os.getcwd() + "/../Data/ProcessedData/SIFT_try/BBOX/" + seedTypeWrite + "/S" + str(setNumber) +"/" +  imageViewAngle + "/"  
 
   # Create the CSV file if it does not exist
   outcsv = os.path.join(outPath, 'bbox_record.csv')
@@ -105,3 +105,7 @@ def cropSideNoise(seedImageCollection, seedType, imageViewAngle, setNumber):
 
 
   return (imageSeedIndex)
+
+if __name__ == '__main__':
+  # called when runned from command prompt
+  print("cropSideNoise")

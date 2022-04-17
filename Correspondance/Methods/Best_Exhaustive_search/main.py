@@ -10,4 +10,4 @@ import trial
 if __name__ == '__main__':
     # called when runned from command prompt
     print(trial.trialFunction())
-    
+    print(trial.trialFunction2(10))

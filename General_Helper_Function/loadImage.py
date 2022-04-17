@@ -4,11 +4,11 @@ import cv2
 #setNumber - 1, 2, 3..
 def loadImage(seedType, imageViewAngle, setNumber, original=True):
   if original:
-    file_path = ("Multiview_jpg/" + seedType + "/Set" 
+    file_path = ("Multiview_jpg/" + seedType + "/Set"    # TODO: Update file path
                 + str(setNumber) + "/" + imageViewAngle 
                 + "_S" + str(setNumber) + ".jpg")
   else:
-    file_path = ("SIFT_try/" + seedType + "/S" 
+    file_path = ("SIFT_try/" + seedType + "/S"            # TODO: Update file path
                + str(setNumber) + "/" + imageViewAngle 
                + "_S" + str(setNumber) + ".jpg")
   image = cv2.imread(file_path)
