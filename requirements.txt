@@ -6,7 +6,6 @@ pandas
 os-sys
 torch
 Pillow
-pycopy-copy
 python-csv
 python-math
 scikit-image
