@@ -15,14 +15,14 @@ def extractSeeds(seedImageCollection, seedType, imageViewAngle, setNumber, origi
   imageWidth = imageParam[1]
   
   if original:
-    file_path = "BBOX_Record/" + seedType + "/set" + str(setNumber) + "/" + imageViewAngle + "/bbox_record.csv"   # TODO: Update file path
+    file_path = os.getcwd() + "/../Data/OriginalData/BBOX_Record/" + seedType + "/set" + str(setNumber) + "/" + imageViewAngle + "/bbox_record.csv"   
     df = pd.read_csv(file_path)
     x_min = np.array(df.iloc[:,1].values)
     y_min = np.array(df.iloc[:,2].values)
     x_max = np.array(df.iloc[:,3].values)
     y_max = np.array(df.iloc[:,4].values)
   else:
-    file_path = "./SIFT_try/BBOX/" + seedType + "/S" + str(setNumber) + "/" + imageViewAngle + "/RearrangeBBox.csv"  # TODO: Update file path
+    file_path = os.getcwd() + "/../Data/ProcessedData/SIFT_try/BBOX/" + seedType + "/S" + str(setNumber) + "/" + imageViewAngle + "/RearrangeBBox.csv"  
     df = pd.read_csv(file_path)
     x_min = np.array(df.iloc[:,0].values)
     y_min = np.array(df.iloc[:,1].values)
@@ -114,5 +114,6 @@ def extractSeeds(seedImageCollection, seedType, imageViewAngle, setNumber, origi
   return np.array(seedImageCollectionReturn)
 
 if __name__ == '__main__':  # Stopped here
-  print(os.path. exists(os.getcwd() + "/../../Data/OriginalData/BBOX_Record/"))
+  print(os.path. exists(os.getcwd() + "/../Data/OriginalData/BBOX_Record/"))
+  print(os.path. exists(os.getcwd() + "/../Data/ProcessedData/SIFT_try/"))
   

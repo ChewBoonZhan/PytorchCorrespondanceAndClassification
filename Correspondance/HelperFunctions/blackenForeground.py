@@ -8,7 +8,7 @@ import os
 # setNumber - 1, 2, 3, 4...
 def blackenForeground(seedImageCollection, seedType, imageViewAngle, setNumber):
   
-  file_path = os.getcwd() + "/../../Data/OriginalData/BBOX_Record/" + seedType + "/set" + str(setNumber) + "/" + imageViewAngle + "/"  # TODO: Update file path
+  file_path = os.getcwd() + "/../../Data/OriginalData/BBOX_Record/" + seedType + "/set" + str(setNumber) + "/" + imageViewAngle + "/"  
   df = pd.read_csv(file_path + "bbox_record.csv")
   x_min = np.array(df.iloc[:,1].values)
   y_min = np.array(df.iloc[:,2].values)
