@@ -1,14 +1,15 @@
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
+
 import sys
 import os
 
-# sys.path.insert(0, os.getcwd() + '\..\draw_lines.py')
-sys.path.insert(0, os.getcwd())
+sys.path.insert(0, os.getcwd() + "/../../HelperFunctions/")
+
+from draw_lines import draw_lines
 
 sift = cv2.xfeatures2d.SIFT_create()
-from draw_lines import draw_lines
 
 # Define function to extract sift feature points from a given image
 def extract_sift_lines_canny(imagepath, bbobPath):
@@ -43,7 +44,4 @@ def extract_sift_lines_canny(imagepath, bbobPath):
   sift_image = cv2.drawKeypoints(img_gray, keypoints, img_gray)
   # sift_image = 1
   
-  return image, sift_image, keypoints, descriptors #return 4 values
-
-if __name__ == '__main__':
-  print(os.path. exists(os.getcwd() + '\draw_lines.py'))
+  return image, sift_image, keypoints, descriptors, image_lines_overlay #return 5 values

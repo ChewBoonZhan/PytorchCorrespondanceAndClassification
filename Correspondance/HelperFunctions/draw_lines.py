@@ -2,6 +2,12 @@ import cv2
 
 # Draw connecting lines among seeds
 
+import os
+import sys
+sys.path.insert(0, os.getcwd() + "/../../../General_Helper_Function/")
+
+from readBoundingBoxCSV import readBoundingBoxCSV
+
 def draw_lines(image, bbobPath, thickness = 20, color = (255,0,0)):
   radius = 20
 
