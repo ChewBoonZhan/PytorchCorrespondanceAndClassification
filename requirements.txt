@@ -3,7 +3,6 @@ opencv-python
 numpy
 matplotlib
 pandas
-os-sys
 torch
 Pillow
 python-csv

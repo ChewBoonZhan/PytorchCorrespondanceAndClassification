@@ -62,8 +62,14 @@ conda activate py3
 <br />
 
 ### -> To install dependencies:
+1. Make sure you have Microsoft C++ Build Tools installed on your PC. You can get it [here](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
+2. Make sure you install the C++ Development Tools
+<img src = "https://i.imgur.com/30715yI.png" height = 300/>
+
+
 ```
-pip install -r requirements.txt
+1. pip install --upgrade setuptools
+2. pip install -r requirements.txt
 ```
 <b>Important~~</b> <br />
 If during the development of the project you face dependency issue, please search for the required dependency online, and add it to "requirements.txt" at the root of this project. After doing that, run the above command. This helps other people who dont have the dependecy on their laptop to install and use the same dependency as you too when they run the command above. Thanks.
