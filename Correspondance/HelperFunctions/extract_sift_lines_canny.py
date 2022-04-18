@@ -44,4 +44,4 @@ def extract_sift_lines_canny(imagepath, bbobPath):
   sift_image = cv2.drawKeypoints(img_gray, keypoints, img_gray)
   # sift_image = 1
   
-  return image, sift_image, keypoints, descriptors, image_lines_overlay #return 5 values
+  return image, sift_image, keypoints, descriptors #return 4 values

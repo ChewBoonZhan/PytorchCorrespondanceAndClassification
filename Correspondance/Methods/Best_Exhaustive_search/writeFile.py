@@ -2,7 +2,7 @@
 
 import csv
 
-def writeFile(x_min, y_min, x_max, y_max, orientation1, bbobPath, numOfSeeds):
+def writeFile(x_min, y_min, x_max, y_max, bbobPath, numOfSeeds):
   # name of csv file
   filename = bbobPath + "/RearrangeBBox.csv"
 

@@ -18,8 +18,8 @@ if __name__ == '__main__':
     # called when runned from command prompt
 
     # change variable here to change the output
-    setNum = 8           # (1-10) - good seeds, (1-12) - bad seeds
-    seedType = "Good"    # Good/Bad
+    setNum = 1           # (1-10) - good seeds, (1-12) - bad seeds
+    seedType = "Bad"    # Good/Bad
 
     # right, top, left, rear, front
     source_orientation = "right"  
@@ -33,7 +33,7 @@ if __name__ == '__main__':
     # without exhaustive search (bottom) the image looks worse
 
     # cant run the bottom one, cause it'll call "create_file"
-    image1, image2 = find_correspondance_rotated(image1, image2, boundingBoxCollection, rotationMatrixCollection, paddingImagesCollection, "right", os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/Good_seeds/S8/right/", os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/Good_seeds/S8/top/")
+    image1, image2 = find_correspondance_rotated(image1, image2, boundingBoxCollection, rotationMatrixCollection, paddingImagesCollection, os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + source_orientation + "/", os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + dest_orientation + "/")
 
     # Show different images as result.
     f, axarr = plt.subplots(1, 2)
