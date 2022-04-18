@@ -1,3 +1,8 @@
+import os
+import sys
+
+sys.path.insert(0, os.getcwd() + "/../../HelperFunctions/")
+
 #importing required libraries
 from skimage.io import imread
 from skimage.transform import resize
@@ -86,3 +91,5 @@ if __name__ == '__main__':
     # called when runned from command prompt
     classify()
     # svm()
+    print("Done")
+    

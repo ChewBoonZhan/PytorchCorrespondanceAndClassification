@@ -35,6 +35,7 @@ if __name__ == '__main__':
     # cant run the bottom one, cause it'll call "create_file"
     image1, image2 = find_correspondance_rotated(image1, image2, boundingBoxCollection, rotationMatrixCollection, paddingImagesCollection, "right", os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/Good_seeds/S8/right/", os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/Good_seeds/S8/top/")
 
+    # Show different images as result.
     f, axarr = plt.subplots(1, 2)
     axarr[0].axis('off')
     axarr[0].set_title("Source Image")

@@ -2,10 +2,9 @@ import os
 import csv
 
 def loadTrainData():
-    os.chdir('C:/Users/HuiFang/Desktop/Year 3/Spring/Computer Vision/CW/PytorchCorrespondanceAndClassification/Data/ProcessedData')
     #Path Example: SIFT_try/Training/Good_seeds/S1/Seed1/top.jpg
-    training_path_bad = 'SIFT_try/Training/Bad_seeds'
-    training_path_good = 'SIFT_try/Training/Good_seeds'
+    training_path_bad = os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/Training/Bad_seeds"
+    training_path_good = os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/Training/Good_seeds"
 
     #a list of img paths + labels where each element in the list is the paths to all views for 1 seed 
     trainData=[]
@@ -17,7 +16,7 @@ def loadTrainData():
     img_label_list=[] #a list of labels 0/1. 1 seed 1 label
 
     # with open('SIFT_try/Training/trainingdata.csv', 'w', newline='') as file:
-    with open('training_data.csv', 'w', newline='') as file:
+    with open(os.getcwd() + "/../../../Data/ProcessedData/training_data.csv", 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(["image_name", "label"]) # header
     
@@ -83,17 +82,16 @@ def loadTrainData():
     return trainData
 
 def loadTestData():
-    os.chdir('C:/Users/HuiFang/Desktop/Year 3/Spring/Computer Vision/CW/PytorchCorrespondanceAndClassification/Data/ProcessedData')
     #Path Example: SIFT_try/Testing/Good_seeds/S9/Seed1/top.jpg
-    testing_path_bad = 'SIFT_try/Testing/Bad_seeds'
-    testing_path_good = 'SIFT_try/Testing/Good_seeds'
+    testing_path_bad = os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/Testing/Bad_seeds"
+    testing_path_good = os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/Testing/Good_seeds"
 
     views=['top','right','left','front','rear'] #load testing seeds in this exact order
 
     testData=[]
     img_label_list=[] 
 
-    with open('SIFT_try/Testing/testingdata.csv', 'w', newline='') as file:
+    with open(os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/Testing/testingdata.csv", 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(["image_name", "label"]) # header
 
@@ -157,7 +155,5 @@ def loadTestData():
     return testData
 
 if __name__ == '__main__':
-    os.chdir('C:/Users/HuiFang/Desktop/Year 3/Spring/Computer Vision/CW/PytorchCorrespondanceAndClassification/Data/ProcessedData')
-    # called when runned from command prompt
-    trainData = loadTrainData()
-    testData = loadTestData()
+ 
+    print(os.path. exists(os.getcwd() + "/../../Data/ProcessedData/training_data.csv"))
