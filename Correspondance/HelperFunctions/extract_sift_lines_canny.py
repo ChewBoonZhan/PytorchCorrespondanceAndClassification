@@ -8,7 +8,7 @@ import os
 sys.path.insert(0, os.getcwd())
 
 sift = cv2.xfeatures2d.SIFT_create()
-import draw_lines
+from draw_lines import draw_lines
 
 # Define function to extract sift feature points from a given image
 def extract_sift_lines_canny(imagepath, bbobPath):

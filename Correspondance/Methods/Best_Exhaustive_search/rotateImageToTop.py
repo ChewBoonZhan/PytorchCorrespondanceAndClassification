@@ -1,8 +1,11 @@
+import sys
+import os
+
 import numpy as np
 
 sys.path.insert(0, os.getcwd())
 
-import rotation_matrix
+from rotation_matrix import rotation_matrix
 
 def rotateImageToTop(image, orientation):
   imageSize = image.shape
