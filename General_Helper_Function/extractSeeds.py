@@ -1,6 +1,10 @@
 from matplotlib import image
 import pandas as pd
 import numpy as np
+
+import sys
+import os
+
 # seedImageCollection - image that contains all the seeds. Must be original image as the one in Moodle
 # seedType - "bad_seeds" or "good_seeds"
 # imageViewAngle - "front", "top", "right", "rear", "left"
@@ -108,4 +112,7 @@ def extractSeeds(seedImageCollection, seedType, imageViewAngle, setNumber, origi
 
   
   return np.array(seedImageCollectionReturn)
+
+if __name__ == '__main__':  # Stopped here
+  print(os.path. exists(os.getcwd() + "/../../Data/OriginalData/BBOX_Record/"))
   

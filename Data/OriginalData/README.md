@@ -4,7 +4,7 @@
 
 2. Extract the data here, in this format:
 <br /><br />
-<img src = "./Image/1.png" height=300 />
+<img src = "https://i.imgur.com/GbgFU4N.png" height=300 />
 <br />
 As can be seen from image above, "BBOX_Record" and "Multiview_jpg" is to be extracted to OriginalData folder.
 

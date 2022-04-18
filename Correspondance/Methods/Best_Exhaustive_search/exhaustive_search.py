@@ -240,7 +240,7 @@ def exhaustive_search(imagepath1, imagepath2, bbobPath1, bbobPath2, orientation1
     # update all the seed bounding box and center..
     seedClusterCenterCollectionX[0] = seedClusterCenterCollectionX[0] + int(abs(diffInX))
 
-    # TODO: Update bounding box here
+    # Update bounding box here
     transformedBoundingBox[0][0]= transformedBoundingBox[0][0]+ int(abs(diffInX))
     transformedBoundingBox[0][2]= transformedBoundingBox[0][2]+ int(abs(diffInX))
     
@@ -253,7 +253,7 @@ def exhaustive_search(imagepath1, imagepath2, bbobPath1, bbobPath2, orientation1
     # update all the seed bounding box and center..
     seedClusterCenterCollectionX[1] = seedClusterCenterCollectionX[1] + int(abs(diffInX))
 
-    # TODO: Update bounding box here
+    # Update bounding box here
     transformedBoundingBox[1][0]= transformedBoundingBox[1][0] + int(abs(diffInX))
     transformedBoundingBox[1][2]= transformedBoundingBox[1][2] + int(abs(diffInX))
     
@@ -267,7 +267,7 @@ def exhaustive_search(imagepath1, imagepath2, bbobPath1, bbobPath2, orientation1
     # update all seed bounding box and center...
     seedClusterCenterCollectionY[0] = seedClusterCenterCollectionY[0] + int(abs(diffInY))
 
-    # TODO: Update bounding box here
+    # Update bounding box here
     transformedBoundingBox[0][1]= transformedBoundingBox[0][1]+ int(abs(diffInY))
     transformedBoundingBox[0][3]= transformedBoundingBox[0][3]+ int(abs(diffInY))
 
@@ -280,7 +280,7 @@ def exhaustive_search(imagepath1, imagepath2, bbobPath1, bbobPath2, orientation1
     # update all the seed bounding box and center..
     seedClusterCenterCollectionY[1] = seedClusterCenterCollectionY[1] + int(abs(diffInY))
     
-    # TODO: Update bounding box here
+    # Update bounding box here
 
     transformedBoundingBox[1][1]= transformedBoundingBox[1][1] + int(abs(diffInY))
     transformedBoundingBox[1][3]= transformedBoundingBox[1][3]+ int(abs(diffInY))

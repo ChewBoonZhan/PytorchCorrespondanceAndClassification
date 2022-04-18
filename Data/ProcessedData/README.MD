@@ -4,7 +4,7 @@
 
 2. Extract the data here, in this format:
 <br /><br />
-<img src = "./Image/1.png" height=300 />
+<img src = "https://i.imgur.com/5asrfRH.png" height=300 />
 <br />
 As can be seen from image above, SIFT_try is to be extracted to ProcessedData folder.
 

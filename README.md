@@ -22,7 +22,7 @@ To use this project, first lets download some data and put them in the right dir
 
 2. Extract the data here, in this format:
 <br /><br />
-<img src = "Data/OriginalData/Image/1.png" height=300 />
+<img src = "https://i.imgur.com/GbgFU4N.png" height=300 />
 <br />
 As can be seen from image above, "BBOX_Record" and "Multiview_jpg" is to be extracted to OriginalData folder.
 
@@ -30,7 +30,7 @@ As can be seen from image above, "BBOX_Record" and "Multiview_jpg" is to be extr
 
 4. Extract the data here, in this format:
 <br /><br />
-<img src = "Data/ProcessedData/Image/1.png" height=300 />
+<img src = "https://i.imgur.com/5asrfRH.png" height=300 />
 <br />
 As can be seen from image above, SIFT_try is to be extracted to ProcessedData folder.
 
