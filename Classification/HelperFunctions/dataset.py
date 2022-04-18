@@ -16,7 +16,7 @@ def loadTrainData():
     img_label_list=[] #a list of labels 0/1. 1 seed 1 label
 
     # with open('SIFT_try/Training/trainingdata.csv', 'w', newline='') as file:
-    with open(os.getcwd() + "/../../../Data/ProcessedData/training_data.csv", 'w', newline='') as file:
+    with open(os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/Training/trainingdata.csv", 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(["image_name", "label"]) # header
     
