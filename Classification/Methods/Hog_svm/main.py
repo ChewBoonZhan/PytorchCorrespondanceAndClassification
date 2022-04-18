@@ -17,13 +17,17 @@ import matplotlib.pyplot as plot
 from sklearn import svm
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
+import pandas as pd
 
-def classify():
-    feature = []
-    hog_im = []
+feature = []
+hog_im = []
+feature_test  = []
+hog_test_im = []
+trainData = loadTrainData()
+testData = loadTestData()
 
-    trainData = loadTrainData()
-    testData = loadTestData()
+def hog_method():
+    global feature, hog_im, feature_test, hog_test_im
 
     for i_training_data in range(len(trainData)):
         feature_set  = []
@@ -39,8 +43,6 @@ def classify():
         feature.append(feature_set)
         hog_im.append(hog_set)
 
-    feature_test  = []
-    hog_test_im = []
     feature = np.array(feature)
     hog_im = np.array(hog_im)
     
@@ -61,7 +63,7 @@ def classify():
     feature_test = np.array(feature_test)
     hog_test_im = np.array(hog_test_im)
 
-# def svm():
+def svm_method():
     y = []
     for i in range(len(trainData)):
         y.append(trainData[i][0][1])
@@ -75,21 +77,23 @@ def classify():
         y_in_test.append(testData[i][0][1])
 
     testy = clf.predict(feature_test)
-    # print(classification_report(y_in_test, testy, target_names=os.listdir('/content/drive/My Drive/CV_Assignment_Group/Testing')))
-    print(classification_report(y_in_test, testy, target_names = ['Bad Seeds','Good Seeds']))
-    print(confusion_matrix(y_in_test, testy, labels=range(2)))
+    return y_in_test, testy
 
-
-def print_table():
+def print_result():
+    y_in_test, testy = svm_method()
     test_result = pd.concat([
-        pd.DataFrame(numpy.array(y_in_test)), pd.DataFrame(testy)], axis=1, join="inner")
+        pd.DataFrame(np.array(y_in_test)), pd.DataFrame(testy)], axis=1, join="inner")
     test_result.columns = ['actual','predict']
     test_result['accuracy'] = np.where(test_result['actual']== test_result['predict'], True, False)
-    test_result
+    print(test_result)
+    print("\nClassification Report")
+    print(classification_report(y_in_test, testy, target_names = ['Bad Seeds','Good Seeds']))
+    print("\nConfusion Matrix")
+    print(confusion_matrix(y_in_test, testy, labels=range(2)))
 
 if __name__ == '__main__':
     # called when runned from command prompt
-    classify()
-    # svm()
+    hog_method()
+    print_result()
     print("Done")
     
