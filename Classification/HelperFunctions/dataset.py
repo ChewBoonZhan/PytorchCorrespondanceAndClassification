@@ -2,18 +2,19 @@ import os
 import csv
 
 def loadTrainData():
+
     #Path Example: SIFT_try/Training/Good_seeds/S1/Seed1/top.jpg
     training_path_bad = os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/Training/Bad_seeds"
     training_path_good = os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/Training/Good_seeds"
 
     #a list of img paths + labels where each element in the list is the paths to all views for 1 seed 
     trainData=[]
+
     #Example:
     #[[(seed1 top S1,0),(seed1 right S1,0),...],
     # [(seed2 top S1, 0),(seed2 right S1,0),...], 
     # [..S2..], [..S3..]]
 
-    img_label_list=[] #a list of labels 0/1. 1 seed 1 label
 
     # with open('SIFT_try/Training/trainingdata.csv', 'w', newline='') as file:
     with open(os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/Training/trainingdata.csv", 'w', newline='') as file:
@@ -22,7 +23,7 @@ def loadTrainData():
     
         for i in (n+1 for n in range(9)): #Set 1 to 9 for Bad seeds
     
-            print('Loading Training Bad seeds Set' + str(i))
+            print('\nLoading Training Bad seeds Set' + str(i))
 
             path_to_set = training_path_bad + '/S' + str(i) # 'SIFT_try/Training/Bad_seeds/S1'
 
@@ -42,16 +43,13 @@ def loadTrainData():
 
                     #if want paths instead of image (arrays), use the following
                     img_seed.append((path_to_seed_view,0)) #['.../S1/Seed1/top.jpg', '.../S1/Seed1/right.jpg',....]
-                    #filename = 'S'+str(i)+'_'+seed+view #S1Seed1top.jpg
                     writer.writerow([path_to_seed_view, 0])
 
                 trainData.append(img_seed)
-        #img_seed_list.append(img_seed)
-        #img_label_list.append(0)
 
         for i in (n+1 for n in range(8)): #Set 1 to 8 for Good seeds
         
-            print('Loading Training Good seeds Set' + str(i))
+            print('\nLoading Training Good seeds Set' + str(i))
 
             path_to_set = training_path_good + '/S' + str(i) # 'SIFT_try/Training/Good_seeds/S1'
 
@@ -71,17 +69,18 @@ def loadTrainData():
 
                     #if want paths instead of image (arrays), use the following
                     img_seed.append((path_to_seed_view,1)) #['.../S1/Seed1/top.jpg', '.../S1/Seed1/right.jpg',....]
-                    #filename = 'S'+str(i)+'_'+seed+view #S1Seed1top.jpg
                     writer.writerow([path_to_seed_view, 1])
 
                 trainData.append(img_seed)
-                #img_seed_list.append(img_seed)
-                #img_label_list.append(1)
 
-    print('Training Dataset created.')
+    print('\nTraining Dataset created.')
     return trainData
 
+
+
+
 def loadTestData():
+
     #Path Example: SIFT_try/Testing/Good_seeds/S9/Seed1/top.jpg
     testing_path_bad = os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/Testing/Bad_seeds"
     testing_path_good = os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/Testing/Good_seeds"
@@ -89,7 +88,6 @@ def loadTestData():
     views=['top','right','left','front','rear'] #load testing seeds in this exact order
 
     testData=[]
-    img_label_list=[] 
 
     with open(os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/Testing/testingdata.csv", 'w', newline='') as file:
         writer = csv.writer(file)
@@ -97,7 +95,7 @@ def loadTestData():
 
         for i in (n+10 for n in range(3)): #Set 10 to 12 for Bad seeds
         
-            print('Extract Testing Bad seeds Set' + str(i))
+            print('\nExtract Testing Bad seeds Set' + str(i))
 
             path_to_set = testing_path_bad + '/S' + str(i) # 'SIFT_try/Testing/Bad_seeds/S10'
 
@@ -117,15 +115,13 @@ def loadTestData():
                     #img_seed.append((image,0))
 
                     img_seed.append((path_to_seed_view,0)) #['.../S10/Seed1/top.jpg', '.../S10/Seed1/right.jpg',....]
-                    #filename = 'S'+str(i)+'_'+seed+view #S1Seed1top.jpg
                     writer.writerow([path_to_seed_view, 0])
 
                 testData.append(img_seed)
-                #img_label_list.append(0)
 
         for i in (n+9 for n in range(2)): #Set 9 to 10 for Good seeds
         
-            print('Extract Testing Good seeds Set' + str(i))
+            print('\nExtract Testing Good seeds Set' + str(i))
 
             path_to_set = testing_path_good + '/S' + str(i) # 'SIFT_try/Testing/Good_seeds/S9'
 
@@ -145,13 +141,11 @@ def loadTestData():
                     #img_seed.append((image,1))
 
                     img_seed.append((path_to_seed_view,1)) #['.../S9/Seed1/top.jpg', '.../S9/Seed1/right.jpg',....]
-                    #filename = 'S'+str(i)+'_'+seed+view #S1Seed1top.jpg
                     writer.writerow([path_to_seed_view, 1])
 
                 testData.append(img_seed)
-                #img_label_list.append(1)
 
-    print('Testing dataset created')
+    print('\nTesting dataset created')
     return testData
 
 if __name__ == '__main__':
