@@ -77,4 +77,3 @@ if __name__ == '__main__':
             cv2.imwrite(os.path.join(path_to_results, 'correspondence_' + source_orientation + "2" + dest_orientation + ".jpg"), merge_images_v(image1, image2))
 
             print("Saving images of correspondence for ", seedType, " Set ", str(setNum), " to folder")
-    

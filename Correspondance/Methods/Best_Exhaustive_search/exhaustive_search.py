@@ -34,6 +34,16 @@ def exhaustive_search(imagepath1, imagepath2, bbobPath1, bbobPath2, orientation1
   (x_min, y_min, x_max, y_max) = readBoundingBoxCSV(bbobPath1)
   (x_min2, y_min2, x_max2, y_max2) = readBoundingBoxCSV(bbobPath2)
 
+  numSeed1 = len(x_min)
+  numSeed2 = len(x_min2)
+
+  if(numSeed1!= numSeed2):
+    print("==============================================")
+    print("Number of seed detected is different for at:")
+    print(imagepath1)
+    print(imagepath2)
+    print("==============================================")
+
   boundingBoxCollection = [[x_min, y_min, x_max, y_max], [x_min2, y_min2, x_max2, y_max2]]
 
   seedClusterCenterCollectionX = []
