@@ -96,14 +96,14 @@ def save_results_image(path_to_results_bad_seeds, path_to_results_good_seeds, pr
               #add label good/bad
               img = cv2.putText(img, text, (xCenter,yCenter), cv2.FONT_HERSHEY_SIMPLEX, 2, (255,255,255), 10, cv2.LINE_AA)
       
-       #after drawing bbox for each seed in the view image, save it to the directory
-       name= view[j] + '_S' + str(i) + '.jpg'
-       if(good):
-           cv2.imwrite(os.path.join(path_to_results_good_seeds, name),img)
-       else:
+          #after drawing bbox for each seed in the view image, save it to the directory
+          name= view[j] + '_S' + str(i) + '.jpg'
+          if(good):
+            cv2.imwrite(os.path.join(path_to_results_good_seeds, name),img)
+          else:
             cv2.imwrite(os.path.join(path_to_results_bad_seeds, name),img)
 
-    numberOfSeeds_prev = numberOfSeeds_prev + numberOfSeeds
+       numberOfSeeds_prev = numberOfSeeds_prev + numberOfSeeds
 
     print("\nSaved.")
 
