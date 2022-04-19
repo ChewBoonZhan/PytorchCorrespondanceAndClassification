@@ -5,7 +5,7 @@ from matplotlib.pyplot import figure
 
 sys.path.insert(0, os.getcwd() + "/../../HelperFunctions/")
 
-from extract_sift_lines_canny import extract_sift_lines_canny
+from extract_sift import extract_sift
 from get_homography import get_homography
 from form_corresponding_bounding_boxes import form_corresponding_bounding_boxes
 from merge_images_v import merge_images_v
@@ -14,7 +14,7 @@ sys.path.insert(0, os.getcwd() + "/../../../General_Helper_Function/")
 
 from readBoundingBoxCSV import readBoundingBoxCSV
 
-def find_correspondence( seed_type, set, methodUsed): #Bad seeds Good seeds
+def find_correspondence_SIFT( seed_type, set, methodUsed): #Bad seeds Good seeds
 
   print('Finding correspondence for ' , seed_type, ' Set ', set)
 
@@ -26,20 +26,15 @@ def find_correspondence( seed_type, set, methodUsed): #Bad seeds Good seeds
   front_img_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/'+ seed_type + '/S' + set + '/front_S' + set +'.jpg'
   rear_img_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/'+ seed_type + '/S' + set + '/rear_S' + set +'.jpg'
 
-  #set paths to bounding box csv
-  #example: SIFT_try/BBOX/Bad_seeds/S2/top/
+  #set paths to bounding box csv of src image
   src_bbox_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/' + seed_type + '/S' + set + '/top/'
-  right_bbox_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/' + seed_type + '/S' + set + '/right/'
-  left_bbox_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/' + seed_type + '/S' + set + '/left/'
-  front_bbox_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/' + seed_type + '/S' + set + '/front/'
-  rear_bbox_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/' + seed_type + '/S' + set + '/rear/'
 
-  #call for extract_sift_lines_canny method
-  image_src, sift_image_src, keypoints_src, descriptors_src = extract_sift_lines_canny(src_img_path, src_bbox_path) #top
-  image_right, sift_image_right, keypoints_right, descriptors_right = extract_sift_lines_canny(right_img_path, right_bbox_path) 
-  image_left, sift_image_left, keypoints_left, descriptors_left = extract_sift_lines_canny(left_img_path, left_bbox_path) 
-  image_front, sift_image_front, keypoints_front, descriptors_front = extract_sift_lines_canny(front_img_path, front_bbox_path) 
-  image_rear, sift_image_rear, keypoints_rear, descriptors_rear = extract_sift_lines_canny(rear_img_path, rear_bbox_path) 
+  #extract sift features
+  image_src, sift_image_src, keypoints_src, descriptors_src = extract_sift(src_img_path) #top
+  image_right, sift_image_right, keypoints_right, descriptors_right = extract_sift(right_img_path) 
+  image_left, sift_image_left, keypoints_left, descriptors_left = extract_sift(left_img_path) 
+  image_front, sift_image_front, keypoints_front, descriptors_front = extract_sift(front_img_path) 
+  image_rear, sift_image_rear, keypoints_rear, descriptors_rear = extract_sift(rear_img_path) 
 
   #save in a dict to return -> can be used for classfication training later
   sift_src_dict = {'keypoints_src': keypoints_src, 'descriptors_src': descriptors_src}
