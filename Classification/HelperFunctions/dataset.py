@@ -10,13 +10,6 @@ def loadTrainData():
     #a list of img paths + labels where each element in the list is the paths to all views for 1 seed 
     trainData=[]
 
-    #Example:
-    #[[(seed1 top S1,0),(seed1 right S1,0),...],
-    # [(seed2 top S1, 0),(seed2 right S1,0),...], 
-    # [..S2..], [..S3..]]
-
-
-    # with open('SIFT_try/Training/trainingdata.csv', 'w', newline='') as file:
     with open(os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/Training/trainingdata.csv", 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(["image_name", "label"]) # header
@@ -40,12 +33,7 @@ def loadTrainData():
                 for view in os.listdir(path_to_seed): #return top.jpg, right.jpg,...
 
                     path_to_seed_view = os.path.join(path_to_seed, view) #'.../S1/Seed1/top.jpg'
-        
-                    #read path to get image
-                    #image = cv2.imread(path_to_seed_view)
-                    #img_seed.append((image,0))
 
-                    #if want paths instead of image (arrays), use the following
                     img_seed.append((path_to_seed_view,0)) #['.../S1/Seed1/top.jpg', '.../S1/Seed1/right.jpg',....]
                     writer.writerow([path_to_seed_view, 0])
 
@@ -70,12 +58,7 @@ def loadTrainData():
                 for view in os.listdir(path_to_seed): #return top.jpg, right.jpg,...
 
                     path_to_seed_view = os.path.join(path_to_seed, view) #'.../S1/Seed1/top.jpg'
-            
-                    #read path to get image
-                    #image = cv2.imread(path_to_seed_view)
-                    #img_seed.append((image,1))
-
-                    #if want paths instead of image (arrays), use the following
+        
                     img_seed.append((path_to_seed_view,1)) #['.../S1/Seed1/top.jpg', '.../S1/Seed1/right.jpg',....]
                     writer.writerow([path_to_seed_view, 1])
 
@@ -83,9 +66,6 @@ def loadTrainData():
 
     print('\nTraining Dataset created.')
     return trainData
-
-
-
 
 def loadTestData():
 
@@ -121,10 +101,6 @@ def loadTestData():
 
                     view_name= view + '.jpg'
                     path_to_seed_view = os.path.join(path_to_seed, view_name) #'.../S10/Seed1/top.jpg'
-        
-                    #get image from path
-                    #image = cv2.imread(path_to_seed_view)
-                    #img_seed.append((image,0))
 
                     img_seed.append((path_to_seed_view,0)) #['.../S10/Seed1/top.jpg', '.../S10/Seed1/right.jpg',....]
                     writer.writerow([path_to_seed_view, 0])
@@ -151,11 +127,6 @@ def loadTestData():
 
                     view_name= view + '.jpg'
                     path_to_seed_view = os.path.join(path_to_seed, view_name) #'.../S9/Seed1/top.jpg'
-        
-                    #get image from path
-                    #image = cv2.imread(path_to_seed_view)
-                    #img_seed.append((image,1))
-
                     img_seed.append((path_to_seed_view,1)) #['.../S9/Seed1/top.jpg', '.../S9/Seed1/right.jpg',....]
                     writer.writerow([path_to_seed_view, 1])
 

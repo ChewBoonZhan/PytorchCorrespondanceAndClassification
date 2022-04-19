@@ -7,13 +7,10 @@ sys.path.insert(0, os.getcwd() + "/../../HelperFunctions/")
 from skimage.io import imread
 from skimage.transform import resize
 from skimage.feature import hog
-from skimage import exposure
-import matplotlib.pyplot as plt
 import numpy as np
 from dataset import *
 import cv2
 import numpy as np
-import matplotlib.pyplot as plot
 from sklearn import svm
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
@@ -68,8 +65,8 @@ def svm_method():
     for i in range(len(trainData)):
         y.append(trainData[i][0][1])
 
-    clf = svm.NuSVC(kernel='sigmoid',gamma='auto')
-    # clf = svm.LinearSVC()
+    # clf = svm.NuSVC(kernel='sigmoid',gamma='auto')
+    clf = svm.LinearSVC()
     clf.fit(feature, y)
 
     y_in_test = []
