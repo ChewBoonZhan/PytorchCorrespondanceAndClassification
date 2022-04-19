@@ -4,6 +4,7 @@ import sys
 from matplotlib.pyplot import figure
 
 sys.path.insert(0, os.getcwd() + "/../../HelperFunctions/")
+sys.path.insert(0, os.getcwd() + "/../../Methods/Seed_center_line_canny_SIFT")
 
 from extract_sift_lines_canny import extract_sift_lines_canny
 from get_homography import get_homography

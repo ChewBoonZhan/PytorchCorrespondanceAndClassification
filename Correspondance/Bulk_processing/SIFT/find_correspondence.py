@@ -3,6 +3,7 @@ import os
 import sys
 from matplotlib.pyplot import figure
 
+sys.path.insert(0, os.getcwd() + "/../../Methods/SIFT")
 sys.path.insert(0, os.getcwd() + "/../../HelperFunctions/")
 
 from extract_sift import extract_sift
