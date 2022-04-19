@@ -18,12 +18,12 @@ if __name__ == '__main__':
     # called when runned from command prompt
 
     # change variable here to change the output
-    setNum = 1           # (1-10) - good seeds, (1-12) - bad seeds
-    seedType = "Bad"    # Good/Bad
+    setNum = 7           # (1-10) - good seeds, (1-12) - bad seeds
+    seedType = "Good"    # Good/Bad
 
     # right, top, left, rear, front
-    source_orientation = "right"  
-    dest_orientation = "top"
+    source_orientation = "top"  
+    dest_orientation = "rear"
 
     (image1, image2, boundingBoxCollection, transformedBoundingBox, rotationMatrixCollection, paddingImagesCollection) = exhaustive_search(
         os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/" + seedType+ "_seeds/S" + str(setNum) + "/" + source_orientation + "_S" + str(setNum) + ".jpg", os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/" + seedType + "_seeds/S" + str(setNum) + "/" + dest_orientation + "_S" + str(setNum) + ".jpg", 
