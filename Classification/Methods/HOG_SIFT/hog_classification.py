@@ -22,7 +22,7 @@ from sklearn.metrics import confusion_matrix
 trainData = loadTrainData()
 testData = loadTestData()
 
-def hog():
+def hog_extract():
     
    #training features and hog images
    feature = []
@@ -35,14 +35,16 @@ def hog():
    #perform hog on training seeds
    print("\nExtracting HOG features on Training datasets...")
    for i_training_data in range(len(trainData)):
-          
-        for i_view in range(len(trainData[i_training_data])):
-            
+
+       for i_view in range(len(trainData[i_training_data])):
+
             feature_set=[]
             hog_set=[]
+
             resized_img = cv2.resize(cv2.imread(trainData[i_training_data][i_view][0]), (40, 40))
             fd, hog_image = hog(resized_img, orientations=9, pixels_per_cell=(9, 9),
-                            cells_per_block=(2, 2), visualize=True, multichannel=True)
+                              cells_per_block=(2, 2), visualize=True, multichannel=True)
+    
             feature_set.append(fd)
             feature.append(feature_set)
             hog_set.append(hog_image)
@@ -50,7 +52,8 @@ def hog():
 
    feature = numpy.array(feature)
    hog_im = numpy.array(hog_im)
-   feature = feature.reshape(810,324)
+   print(feature.shape)
+   feature = feature.reshape(feature.shape[0],feature.shape[2])
 
    #perform hog on testing seeds   
    print("\nExtracting HOG features on Testing datasets...")
@@ -72,7 +75,8 @@ def hog():
   
    feature_test = numpy.array(feature_test)
    hog_test_im = numpy.array(hog_test_im)
-   feature_test= feature_test.reshape(240,324)
+   print(feature_test.shape)
+   feature_test= feature_test.reshape(feature_test.shape[0],feature_test.shape[2])
    
    #train and test on SVM model
    return svm(feature,feature_test)
@@ -152,5 +156,5 @@ def evaluate_hog(y_test, y_pred, true_classes_hog, predict_classes_hog, image_pa
 
 if __name__ == '__main__':
     # called when runned from command prompt
-    hog()
+    hog_extract()
 

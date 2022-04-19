@@ -26,7 +26,7 @@ testData = loadTestData()
 
 k=1000
 
-def sift():
+def sift_extract():
 
     #shuffle
     np.random.shuffle(trainData) 
