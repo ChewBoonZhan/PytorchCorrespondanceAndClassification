@@ -15,7 +15,11 @@ def loadTrainData():
         print('\nLoading Training Bad seeds Set' + str(i))
         path_to_set = training_path_bad + '/S' + str(i) # 'SIFT_try/Training/Bad_seeds/S1'
 
-        for seed in os.listdir(path_to_set): #return Seed1, Seed2, Seed3, ...
+        numberOfSeeds=len([name for name in os.listdir(path_to_set)])
+  
+        for seed_index in (n+1 for n in range(numberOfSeeds)):
+                
+            seed = "Seed" + str(seed_index)
 
             path_to_seed = os.path.join(path_to_set,seed) # 'SIFT_try/Training/Bad_seeds/S1/Seed1'
 
@@ -30,7 +34,11 @@ def loadTrainData():
         print('\nLoading Training Good seeds Set' + str(i))
         path_to_set = training_path_good + '/S' + str(i) # 'SIFT_try/Training/Good_seeds/S1'
 
-        for seed in os.listdir(path_to_set): #return Seed1, Seed2, Seed3, ...
+        numberOfSeeds=len([name for name in os.listdir(path_to_set)])
+  
+        for seed_index in (n+1 for n in range(numberOfSeeds)):
+                
+            seed = "Seed" + str(seed_index)
 
             path_to_seed = os.path.join(path_to_set,seed) # 'SIFT_try/Training/Good_seeds/S1/Seed1'
 
@@ -58,8 +66,11 @@ def loadTestData():
   
         print('\nExtract Testing Bad seeds Set' + str(i))
         path_to_set = testing_path_bad + '/S' + str(i) # 'SIFT_try/Testing/Bad_seeds/S10'
-
-        for seed in os.listdir(path_to_set): #return Seed1, Seed2, Seed3, ...
+        numberOfSeeds=len([name for name in os.listdir(path_to_set)])
+  
+        for seed_index in (n+1 for n in range(numberOfSeeds)):
+                
+            seed = "Seed" + str(seed_index)
 
             path_to_seed = os.path.join(path_to_set,seed) # 'SIFT_try/Testing/Bad_seeds/S10/Seed1'
 
@@ -74,8 +85,12 @@ def loadTestData():
         print('\nExtract Testing Good seeds Set' + str(i))
         path_to_set = testing_path_good + '/S' + str(i) # 'SIFT_try/Testing/Good_seeds/S9'
 
-        for seed in os.listdir(path_to_set): #return Seed1, Seed2, Seed3, ...
-
+        numberOfSeeds=len([name for name in os.listdir(path_to_set)])
+  
+        for seed_index in (n+1 for n in range(numberOfSeeds)):
+                
+            seed = "Seed" + str(seed_index)
+        
             path_to_seed = os.path.join(path_to_set,seed) # 'SIFT_try/Testing/Good_seeds/S9/Seed1'
 
             for j in view:
