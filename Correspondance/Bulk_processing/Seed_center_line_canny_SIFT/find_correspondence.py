@@ -35,7 +35,7 @@ def find_correspondence( seed_type, set, methodUsed): #Bad seeds Good seeds
   front_bbox_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/' + seed_type + '/S' + set + '/front/'
   rear_bbox_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/' + seed_type + '/S' + set + '/rear/'
 
-  #if original method
+  #call for extract_sift_lines_canny method
   image_src, sift_image_src, keypoints_src, descriptors_src = extract_sift_lines_canny(src_img_path, src_bbox_path) #top
   image_right, sift_image_right, keypoints_right, descriptors_right = extract_sift_lines_canny(right_img_path, right_bbox_path) 
   image_left, sift_image_left, keypoints_left, descriptors_left = extract_sift_lines_canny(left_img_path, left_bbox_path) 

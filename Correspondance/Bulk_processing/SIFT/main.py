@@ -1,4 +1,5 @@
-from find_correspondence import find_correspondence
+
+from find_correspondence_SIFT import find_correspondence_SIFT
 
 import os
 if __name__ == '__main__':
@@ -8,11 +9,11 @@ if __name__ == '__main__':
 
     for i in (n+1 for n in range(12)): #set number 1 to 12
         i = str(i)
-        find_correspondence ("Bad_seeds", i, methodUsed)
+        find_correspondence_SIFT ("Bad_seeds", i, methodUsed)
 
     for i in (n+1 for n in range(10)): #set number 1 to 12
         i = str(i)
-        find_correspondence ("Good_seeds", i, methodUsed)
+        find_correspondence_SIFT ("Good_seeds", i, methodUsed)
 
     print("Result has been saved in:")
     print(os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/_seed/S_/Results_' + methodUsed + "/")

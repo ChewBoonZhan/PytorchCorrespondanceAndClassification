@@ -15,7 +15,7 @@ sys.path.insert(0, os.getcwd() + "/../../../General_Helper_Function/")
 
 from readBoundingBoxCSV import readBoundingBoxCSV
 
-def find_correspondence( seed_type, set, methodUsed): #Bad seeds Good seeds
+def find_correspondence_SIFT( seed_type, set, methodUsed): #Bad seeds Good seeds
 
   print('Finding correspondence for ' , seed_type, ' Set ', set)
 
@@ -27,15 +27,10 @@ def find_correspondence( seed_type, set, methodUsed): #Bad seeds Good seeds
   front_img_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/'+ seed_type + '/S' + set + '/front_S' + set +'.jpg'
   rear_img_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/'+ seed_type + '/S' + set + '/rear_S' + set +'.jpg'
 
-  #set paths to bounding box csv
-  #example: SIFT_try/BBOX/Bad_seeds/S2/top/
+  #set paths to bounding box csv of src image
   src_bbox_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/' + seed_type + '/S' + set + '/top/'
-  right_bbox_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/' + seed_type + '/S' + set + '/right/'
-  left_bbox_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/' + seed_type + '/S' + set + '/left/'
-  front_bbox_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/' + seed_type + '/S' + set + '/front/'
-  rear_bbox_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/' + seed_type + '/S' + set + '/rear/'
 
-  #if original method
+  #extract sift features
   image_src, sift_image_src, keypoints_src, descriptors_src = extract_sift(src_img_path) #top
   image_right, sift_image_right, keypoints_right, descriptors_right = extract_sift(right_img_path) 
   image_left, sift_image_left, keypoints_left, descriptors_left = extract_sift(left_img_path) 

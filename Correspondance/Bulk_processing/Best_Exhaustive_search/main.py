@@ -15,10 +15,6 @@ import cv2
 
 import numpy as np
 
-################
-# Notice: Function is still in development
-################
-
 if __name__ == '__main__':
     # called when runned from command prompt
     methodUsed = "Best_Exhaustive_search"
