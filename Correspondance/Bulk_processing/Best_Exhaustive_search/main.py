@@ -9,6 +9,7 @@ from merge_images_v import merge_images_v
 
 from exhaustive_search import exhaustive_search
 from find_correspondance_rotated import find_correspondance_rotated
+from extractIndividualSeeds import extract_seeds
 
 
 import cv2
@@ -17,10 +18,12 @@ import numpy as np
 
 if __name__ == '__main__':
     # called when runned from command prompt
+
     methodUsed = "Best_Exhaustive_search"
     source_orientation = "top"  
     dest_orientation_list = ["right","left","front","rear"]  
-    for i in (n+1 for n in range(12)): #set number 1 to 12
+
+    for i in (n+1 for n in range(12)): #set number 1 to 12 Bad Seeds
         # Bad seeds
         setNum = i
         seedType = "Bad"    
@@ -44,10 +47,10 @@ if __name__ == '__main__':
                 print("The new directory is created!")
             cv2.imwrite(os.path.join(path_to_results, 'correspondence_' + source_orientation + "2" + dest_orientation + ".jpg"), merge_images_v(image1, image2))
 
-            print("Saving images of correspondence for ", seedType, " Set ", str(setNum), " to folder")
+            print("Saving images of correspondence for ", seedType, " Set ", str(setNum), " top with ", dest_orientation, " to folder")
 
     
-    for i in (n+1 for n in range(10)): #set number 1 to 12
+    for i in (n+1 for n in range(10)): #set number 1 to 10 Good Seeds
         # "Good_seeds"
         setNum = i
         seedType = "Good"    
@@ -72,4 +75,8 @@ if __name__ == '__main__':
 
             cv2.imwrite(os.path.join(path_to_results, 'correspondence_' + source_orientation + "2" + dest_orientation + ".jpg"), merge_images_v(image1, image2))
 
-            print("Saving images of correspondence for ", seedType, " Set ", str(setNum), " to folder")
+            print("Saving images of correspondence for ", seedType, " Set ", str(setNum), " top with ", dest_orientation, " to folder")
+    
+    
+    #crop individual seeds out based on correspondence
+    extract_seeds()
