@@ -88,5 +88,19 @@ Please do not leave any spaces in between folder and file names. This might inte
 
 <br />
 
+### -> How to run the code?
+```
+1. Go to "Correspondance -> Bulk_processing -> Best_Exhaustive_search"
+2. Type "python main.py" to run the code. 
+3. This generating corresponding view for all sets, good and bad in the dataset.
+4. This also crops out individual seeds after correspondance between seed is detected
+5. Go to "Classification -> undefined"
+6. Type "python main.py" to run the code. 
+7. A classification report should be printed out in terminal, which states the accuracy, precision, f1-score and confusion matrix.
+```
+
 ### -> How to get started adding code in?
 You may refer [here](https://github.com/ChewBoonZhan/PytorchCorrespondanceAndClassification/blob/main/Correspondance/Methods/Example_method/main.py) to get an example of how the code works. Good luck.
+
+
+
