@@ -42,20 +42,20 @@ def extract_pixel_feature():
     return pixel_train, pixel_test
 
 def svm_method(pixel_train, pixel_test):
-    #loaded_model = pickle.load(open('svm_model_pixel.sav','rb'))
+    loaded_model = pickle.load(open('svm_model_pixel.sav','rb'))
 
     y = []
     for i in range(len(trainData)):
         y.append(trainData[i][0][1])
 
-    clf=svm.LinearSVC(max_iter=80000)
-    clf.fit(pixel_train, y)
+    #clf=svm.LinearSVC(max_iter=80000)
+    #clf.fit(pixel_train, y)
 
     y_in_test = []
     for i in range(len(testData)):
         y_in_test.append(testData[i][0][1])
 
-    testy = clf.predict(pixel_test)
+    testy = loaded_model.predict(pixel_test)
     # result = loaded_model.score(pixel_test, y_in_test)
     # print(result)
     return y_in_test, testy

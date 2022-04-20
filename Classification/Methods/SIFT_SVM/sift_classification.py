@@ -17,7 +17,7 @@ from dataset_sift import loadTestData,loadTrainData
 from save_results_csv import save_results_csv
 from save_results_image import save_results_image
 
-sift = cv2.xfeatures2d.SIFT_create()
+sift = cv2.SIFT_create()
 
 trainData = loadTrainData()
 testData = loadTestData()
