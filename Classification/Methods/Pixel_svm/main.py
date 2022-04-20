@@ -23,8 +23,8 @@ def extract_pixel_feature():
     for i_training_data in range(len(trainData)):
         feature_set = []
         for i_view in range(len(trainData[i_training_data])):
-            resized_img = cv2.imread(trainData[i_training_data][i_view][0])
-            img = cv2.cvtColor(resized_img, cv2.COLOR_BGR2GRAY) #get image based on path
+            resized_img = cv2.resize(cv2.imread(trainData[i_training_data][i_view][0]), (42, 42))
+            img = cv2.cvtColor(resized_img, cv2.COLOR_BGR2GRAY)
             feature_set = np.concatenate((feature_set, img.flatten()), axis=None)
         pixel_train.append(feature_set)
 
@@ -33,8 +33,8 @@ def extract_pixel_feature():
     for i_testing_data in range(len(testData)):
         feature_set = []
         for i_view in range(len(testData[i_testing_data])):
-            resized_img = cv2.imread(testData[i_testing_data][i_view][0])
-            img = cv2.cvtColor(resized_img, cv2.COLOR_BGR2GRAY) #get image based on path
+            resized_img = cv2.resize(cv2.imread(testData[i_testing_data][i_view][0]), (42, 42))
+            img = cv2.cvtColor(resized_img, cv2.COLOR_BGR2GRAY)
             feature_set = np.concatenate((feature_set, img.flatten()), axis=None)
         pixel_test.append(feature_set)
 
@@ -48,16 +48,16 @@ def svm_method(pixel_train, pixel_test):
     for i in range(len(trainData)):
         y.append(trainData[i][0][1])
 
-    #clf=svm.LinearSVC(max_iter=80000)
-    #clf.fit(pixel_train, y)
+    # clf=svm.LinearSVC(max_iter=80000)
+    # clf.fit(pixel_train, y)
 
     y_in_test = []
     for i in range(len(testData)):
         y_in_test.append(testData[i][0][1])
 
     testy = loaded_model.predict(pixel_test)
-    # result = loaded_model.score(pixel_test, y_in_test)
-    # print(result)
+    # testy = clf.predict(pixel_test)
+
     return y_in_test, testy
 
 def print_result(pixel_train, pixel_test):
