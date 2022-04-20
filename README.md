@@ -22,8 +22,6 @@ git clone https://github.com/ChewBoonZhan/PytorchCorrespondanceAndClassification
 1. Windows: [Visual Studio](https://code.visualstudio.com/docs/setup/windows)
 2. MacOS: [Visual Studio](https://code.visualstudio.com/docs/setup/mac)
 
-<br />
-
 
 ### -> Downloading files
 To use this project, first lets download some data and put them in the right directory, so testings can be runned on the script in this repository. 
@@ -36,7 +34,7 @@ To use this project, first lets download some data and put them in the right dir
 <img src = "https://i.imgur.com/GbgFU4N.png" height=300 />
 <br />
 As can be seen from image above, "BBOX_Record" and "Multiview_jpg" is to be extracted to the OriginalData folder.
-<br/>
+<br /><br />
 
 4. Place "SIFT_try" to this directory of the cloned project:
 <br /><br />
@@ -82,7 +80,7 @@ Note: if you already have Python 3.7.10 installed, and for the subsequent runnin
 1. Make sure you Clang installed on your machine. For how, check this [guide](https://code.visualstudio.com/docs/cpp/config-clang-mac).
 
 <br/>
-In the project folder, there is a file called **requirements.txt**, which contains a list of the libraries needed to be installed. To install all the libraries, open a terminal at your project folder location and type:
+In the project folder, there is a file called **requirements.txt**, which contains a list of the libraries needed to be installed. To install all the libraries, open a terminal at your project folder location and type:<br/>
 
 ```
 1. pip install --upgrade setuptools
@@ -106,17 +104,17 @@ Please do not leave any spaces in between folder and file names. This might inte
 
 1. Preproccessing - Script that does preliminary processing on the original seed images before correspondence and classification
 2. Classification - Script that is used to detect classification of seeds between good and bad seed<br/>
-<space><space>*<space> Methods - both satisfatory and less satisfatory methods that we've tried. The ideal one we're using is **"undefined"**.<br/>
-<space><space>*<space> HelperFunctions - scipts that will be used by the methods. 
+&nbsp;&nbsp;&nbsp;&nbsp; **Methods** - both satisfatory and less satisfatory methods that we've tried. The ideal one we're using is **"undefined"**. <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; **HelperFunctions** - scipts that will be used by the methods. 
 
 3. Correspondance - Scripts that was tried for estimating correspondance between 2 input seed<br/>
-<space><space>*<space> Methods - both satisfatory and less satisfatory methods that we've tried. The ideal one we're using is **"Best_Exhaustive_search"**.<br/>
-<space><space>*<space> Bulk_processing - scripts to run the methods for all seed sets in 1 go. <br/>
-<space><space>*<space> HelperFunctions - scipts that will be used by the methods. 
+&nbsp;&nbsp;&nbsp;&nbsp; Methods - both satisfatory and less satisfatory methods that we've tried. The ideal one we're using is **"Best_Exhaustive_search"**.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; **Bulk_processing** - scripts to run the methods for all seed sets in 1 go. <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;  **HelperFunctions** - scipts that will be used by the methods. 
 
 4. Data - Data to used perform classification and correspondance for the coursework.<br/>
-<space><space>*<space> OriginalData - original seed images and the CSV records of their bounding boxes.<br/>
-<space><space>*<space> ProcessedData - results of the preprocessing, classification, and correspondence. 
+&nbsp;&nbsp;&nbsp;&nbsp; **OriginalData** - original seed images and the CSV records of their bounding boxes.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; **ProcessedData** - results of the preprocessing, classification, and correspondence. 
 
 5. General_Helper_Function - Scripts that will be used across the program by "Preprocessing", "Classification", and "Correspondance".
 
@@ -147,9 +145,9 @@ To also try out our the **less satisfatory methods**,
 1. Go to "Correspondance" > "Bulk_processing" > "Seed_center_line_canny_SIFT"
 2. Type "python main.py" to run the code.
 
-<space><space>**To see the intermediate results**:
-<space><space>1. Go to "Correspondance" > "Methods" > "Seed_center_line_canny_SIFT"
-<space><space>2. Type "python main.py" to run the code.
+&nbsp;&nbsp;&nbsp;&nbsp; **To see the intermediate results**: <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; 1. Go to "Correspondance" > "Methods" > "Seed_center_line_canny_SIFT" <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; 2. Type "python main.py" to run the code.
 
 <br/>
 
@@ -157,9 +155,9 @@ To also try out our the **less satisfatory methods**,
 1. Go to "Correspondance" > "Bulk_processing" > "SIFT"
 2. Type "python main.py" to run the code.
 
-<space><space>**To see the intermediate results**:
-<space><space>1. Go to "Correspondance" > "Methods" > "SIFT"
-<space><space>2. Type "python main.py" to run the code.
+&nbsp;&nbsp;&nbsp;&nbsp;**To see the intermediate results**: <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; 1. Go to "Correspondance" > "Methods" > "SIFT" <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; 2. Type "python main.py" to run the code.
 
 <br/>
 
