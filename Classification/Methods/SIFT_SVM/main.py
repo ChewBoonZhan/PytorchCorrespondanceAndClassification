@@ -1,7 +1,6 @@
 import sys
 import os
 
-sys.path.insert(0, os.getcwd() + "/../HOG_SIFT/")
 from sift_classification import sift_extract, evaluate_sift
 
 if __name__ == '__main__':
