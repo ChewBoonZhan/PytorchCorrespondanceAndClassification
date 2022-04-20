@@ -22,7 +22,7 @@ git clone https://github.com/ChewBoonZhan/PytorchCorrespondanceAndClassification
 1. Windows: [Visual Studio](https://code.visualstudio.com/docs/setup/windows)
 2. MacOS: [Visual Studio](https://code.visualstudio.com/docs/setup/mac)
 
-<br /><br />
+<br />
 
 
 ### -> Downloading files
@@ -36,8 +36,9 @@ To use this project, first lets download some data and put them in the right dir
 <img src = "https://i.imgur.com/GbgFU4N.png" height=300 />
 <br />
 As can be seen from image above, "BBOX_Record" and "Multiview_jpg" is to be extracted to the OriginalData folder.
+<br/>
 
-4. Place "SIFT_Try" to this directory of the cloned project:
+4. Place "SIFT_try" to this directory of the cloned project:
 <br /><br />
 <img src = "https://i.imgur.com/5asrfRH.png" height=300 />
 <br />
@@ -69,6 +70,7 @@ conda activate py3
 Note: if you already have Python 3.7.10 installed, and for the subsequent running of the program, you can just run this command.
 <br />
 
+<br />
 
 ### -> Install dependencies:
 #### For Windows:
@@ -77,23 +79,25 @@ Note: if you already have Python 3.7.10 installed, and for the subsequent runnin
 <img src = "https://i.imgur.com/30715yI.png" height = 300/>
 
 #### For Mac:
-1. Make sure you Clang installed on your machine. For how, check this [guide](https://code.visualstudio.com/docs/cpp/config-clang-mac)
+1. Make sure you Clang installed on your machine. For how, check this [guide](https://code.visualstudio.com/docs/cpp/config-clang-mac).
 
 <br/>
-In the project folder, there is a file called requirements.txt, which contains a list of the libraries needed to be installed.
-To install all the libraries, open a terminal at your project folder location and type:
+In the project folder, there is a file called **requirements.txt**, which contains a list of the libraries needed to be installed. To install all the libraries, open a terminal at your project folder location and type:
+
 ```
 1. pip install --upgrade setuptools
 2. pip install -r requirements.txt
 ```
+
 This shall start the installation.
+<br/>
 
 <b>Important~~</b> <br />
-If during the development of the project, you face dependency issue, please search for the required dependency online, and add it to "requirements.txt" at the root of this project. After doing that, run the above command. This helps other people who dont have the dependecy on their laptop to install and use the same dependency as you too when they run the command above. Thanks.
+If during the development of the project, you face dependency issue, please search for the required dependency online, and add it to "requirements.txt" at the root of this project. After doing that, run the above command. This helps other people who dont have the dependency on their laptop to install and use the same dependency as you too when they run the command above. Thanks.
 
 
 <br />
----
+
 
 ## Folder structures
 <b>Important notice</b> <br />
@@ -101,23 +105,23 @@ Please do not leave any spaces in between folder and file names. This might inte
 <br />
 
 1. Preproccessing - Script that does preliminary processing on the original seed images before correspondence and classification
-2. Classification - Script that is used to detect classification of seeds between good and bad seed
-<space><space>*<space> Methods - both satisfatory and less satisfatory methods that we've tried. The ideal one we're using is **"undefined"**.
+2. Classification - Script that is used to detect classification of seeds between good and bad seed<br/>
+<space><space>*<space> Methods - both satisfatory and less satisfatory methods that we've tried. The ideal one we're using is **"undefined"**.<br/>
 <space><space>*<space> HelperFunctions - scipts that will be used by the methods. 
 
-3. Correspondance - Scripts that was tried for estimating correspondance between 2 input seed
-<space><space>*<space> Methods - both satisfatory and less satisfatory methods that we've tried. The ideal one we're using is **"Best_Exhaustive_search"**.
-<space><space>*<space> Bulk_processing - scripts to run the methods for all seed sets in 1 go. 
+3. Correspondance - Scripts that was tried for estimating correspondance between 2 input seed<br/>
+<space><space>*<space> Methods - both satisfatory and less satisfatory methods that we've tried. The ideal one we're using is **"Best_Exhaustive_search"**.<br/>
+<space><space>*<space> Bulk_processing - scripts to run the methods for all seed sets in 1 go. <br/>
 <space><space>*<space> HelperFunctions - scipts that will be used by the methods. 
 
-4. Data - Data to used perform classification and correspondance for the coursework.
-<space><space>*<space> OriginalData - original seed images and the CSV records of their bounding boxes.
+4. Data - Data to used perform classification and correspondance for the coursework.<br/>
+<space><space>*<space> OriginalData - original seed images and the CSV records of their bounding boxes.<br/>
 <space><space>*<space> ProcessedData - results of the preprocessing, classification, and correspondence. 
 
 5. General_Helper_Function - Scripts that will be used across the program by "Preprocessing", "Classification", and "Correspondance".
 
 <br />
----
+
 
 ## Running
 
