@@ -80,7 +80,7 @@ Note: if you already have Python 3.7.10 installed, and for the subsequent runnin
 1. Make sure you Clang installed on your machine. For how, check this [guide](https://code.visualstudio.com/docs/cpp/config-clang-mac).
 
 <br/>
-In the project folder, there is a file called **requirements.txt**, which contains a list of the libraries needed to be installed. To install all the libraries, open a terminal at your project folder location and type:<br/>
+In the project folder, there is a file called requirements.txt, which contains a list of the libraries needed to be installed. To install all the libraries, open a terminal at your project folder location and type:<br/>
 
 ```
 1. pip install --upgrade setuptools
@@ -146,7 +146,7 @@ Navigate to this project location on your machine and open a terminal. At the te
 11. This will classify the seeds to be Good or Bad. A classification report should be printed out in the terminal, which states the accuracy, precision, f1-score and confusion matrix. 
 ```
 Note: These are the steps to find seed correspondence and classification using the **ideal methods**.
-To also try out our the **less satisfatory methods**,
+To also try out our **less satisfatory methods**,
 
 #### -> Correspondence - Seed Center + SIFT + Canny
 1. Go to "Correspondance" > "Bulk_processing" > "Seed_center_line_canny_SIFT"
@@ -183,7 +183,7 @@ To also try out our the **less satisfatory methods**,
 
 ---
 
-### -> How to get started adding code in?
+### How to get started adding code in?
 You may refer [here](https://github.com/ChewBoonZhan/PytorchCorrespondanceAndClassification/blob/main/Correspondance/Methods/Example_method/main.py) to get an example of how the code works. Good luck.
 
 
