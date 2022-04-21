@@ -3,10 +3,8 @@ import csv
 import cv2
 import sys
 
-sys.path.insert(0, os.getcwd() + "/../../General_Helper_Function/")
-
 from extractSeeds import extractSeeds
-from loadImage import loadImage
+from loadImageExtractSeed import loadImage
 
 def extract_seeds():
 
