@@ -12,10 +12,13 @@ def loadImage(seedType, imageViewAngle, setNumber, original=True):
     file_path = (os.getcwd() + "/../Data/ProcessedData/SIFT_try/" + seedType + "/S"            
                + str(setNumber) + "/" + imageViewAngle 
                + "_S" + str(setNumber) + ".jpg")
+
   image = cv2.imread(file_path)
+  print(image.shape)
   return image
 
 
 if __name__ == '__main__':
   print(os.path. exists(os.getcwd() + "/../Data/OriginalData/Multiview_jpg/"))
   print(os.path. exists(os.getcwd() + "/../Data/ProcessedData/SIFT_try/"))
+
