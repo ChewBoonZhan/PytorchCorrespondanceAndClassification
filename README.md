@@ -107,13 +107,13 @@ Please do not leave any spaces in between folder and file names. This might inte
 
 1. **Preproccessing** - Script that does preliminary processing on the original seed images before correspondence and classification
 2. **Classification** - Script that is used to detect classification of seeds between good and bad seed<br/><br/>
-&nbsp;&nbsp;&nbsp;&nbsp; **Methods** - both satisfatory and less satisfatory methods that we've tried. <br/>
-&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; The ideal one we're using is **"undefined"**. <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; **Methods** - both satisfatory and less satisfatory methods that we've tried. <br/><br/>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; The ideal one we're using is **"undefined"**. <br/><br/>
 &nbsp;&nbsp;&nbsp;&nbsp; **HelperFunctions** - scipts that will be used by the methods. 
 
 3. **Correspondance** - Scripts that was tried for estimating correspondance between 2 input seed<br/><br/>
-&nbsp;&nbsp;&nbsp;&nbsp; **Methods** - both satisfatory and less satisfatory methods that we've tried. <br/>
-&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; The ideal one we're using is **"Best_Exhaustive_search"**.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; **Methods** - both satisfatory and less satisfatory methods that we've tried. <br/><br/>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; The ideal one we're using is **"Best_Exhaustive_search"**.<br/><br/>
 &nbsp;&nbsp;&nbsp;&nbsp; **Bulk_processing** - scripts to run the methods for all seed sets in 1 go. <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;  **HelperFunctions** - scipts that will be used by the methods. 
 
@@ -148,6 +148,8 @@ Navigate to this project location on your machine and open a terminal. At the te
 Note: These are the steps to find seed correspondence and classification using the **ideal methods**.
 To also try out our **less satisfatory methods**,
 
+<br/>
+
 #### -> Correspondence - Seed Center + SIFT + Canny
 1. Go to "Correspondance" > "Bulk_processing" > "Seed_center_line_canny_SIFT"
 2. Type "python main.py" to run the code.
@@ -169,17 +171,35 @@ To also try out our **less satisfatory methods**,
 <br/>
 
 #### -> Classification - HOG + SVM
-1. Go to "Correspondance" > "Bulk_processing" > "Hog_svm"
+1. Go to "Classification" > "Methods" > "Hog_svm"
 2. Type "python main.py" to run the code.
 
 <br/>
 
 #### -> Classification - SIFT + SVM
-1. Go to "Correspondance" > "Bulk_processing" > "SIFT_SVM"
+1. Go to "Classification" > "Methods" > "SIFT_svm"
 2. Type "python main.py" to run the code.
 
 <br/>
 
+
+#### -> Classification - HOG + SIFT + SVM
+1. Go to "Classification" > "Methods" > "Hog_SIFT"
+2. Type "python main.py" to run the code.
+
+<br/>
+
+#### -> Classification - HOG + DeepLearning
+1. Go to "Classification" > "Methods" > "Hog_LinearLayer"
+2. Type "python main.py" to run the code.
+
+<br/>
+
+#### -> Classification - CNN 
+1. Go to "Classification" > "Methods" > "CNN"
+2. Type "python main.py" to run the code.
+
+<br/>
 
 ---
 
