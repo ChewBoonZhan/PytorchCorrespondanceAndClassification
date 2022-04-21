@@ -21,6 +21,7 @@ from get_num_seed_in_bounding_box import get_num_seed_in_bounding_box
 sys.path.insert(0, os.getcwd() + "/../../../General_Helper_Function/")
 
 from readBoundingBoxCSV import readBoundingBoxCSV
+from readCLabelCSV import readCLabelCSV
 
 def exhaustive_search(imagepath1, imagepath2, bbobPath1, bbobPath2, orientation1, orientation2):
   
@@ -34,6 +35,12 @@ def exhaustive_search(imagepath1, imagepath2, bbobPath1, bbobPath2, orientation1
   (x_min, y_min, x_max, y_max) = readBoundingBoxCSV(bbobPath1)
   (x_min2, y_min2, x_max2, y_max2) = readBoundingBoxCSV(bbobPath2)
 
+  cLabel = readCLabelCSV(bbobPath1)
+  cLabel2 = readCLabelCSV(bbobPath2)
+
+  cLabelCollection = [cLabel, cLabel2]
+  
+  # check if the number of seed detected is same or not
   numSeed1 = len(x_min)
   numSeed2 = len(x_min2)
 
@@ -258,7 +265,7 @@ def exhaustive_search(imagepath1, imagepath2, bbobPath1, bbobPath2, orientation1
     # update all the seed bounding box and center..
     seedClusterCenterCollectionX[0] = seedClusterCenterCollectionX[0] + int(abs(diffInX))
 
-    # Update bounding box here
+    # TODO: Update bounding box here
     transformedBoundingBox[0][0]= transformedBoundingBox[0][0]+ int(abs(diffInX))
     transformedBoundingBox[0][2]= transformedBoundingBox[0][2]+ int(abs(diffInX))
     
@@ -271,7 +278,7 @@ def exhaustive_search(imagepath1, imagepath2, bbobPath1, bbobPath2, orientation1
     # update all the seed bounding box and center..
     seedClusterCenterCollectionX[1] = seedClusterCenterCollectionX[1] + int(abs(diffInX))
 
-    # Update bounding box here
+    # TODO: Update bounding box here
     transformedBoundingBox[1][0]= transformedBoundingBox[1][0] + int(abs(diffInX))
     transformedBoundingBox[1][2]= transformedBoundingBox[1][2] + int(abs(diffInX))
     
@@ -285,7 +292,7 @@ def exhaustive_search(imagepath1, imagepath2, bbobPath1, bbobPath2, orientation1
     # update all seed bounding box and center...
     seedClusterCenterCollectionY[0] = seedClusterCenterCollectionY[0] + int(abs(diffInY))
 
-    # Update bounding box here
+    # TODO: Update bounding box here
     transformedBoundingBox[0][1]= transformedBoundingBox[0][1]+ int(abs(diffInY))
     transformedBoundingBox[0][3]= transformedBoundingBox[0][3]+ int(abs(diffInY))
 
@@ -298,7 +305,7 @@ def exhaustive_search(imagepath1, imagepath2, bbobPath1, bbobPath2, orientation1
     # update all the seed bounding box and center..
     seedClusterCenterCollectionY[1] = seedClusterCenterCollectionY[1] + int(abs(diffInY))
     
-    # Update bounding box here
+    # TODO: Update bounding box here
 
     transformedBoundingBox[1][1]= transformedBoundingBox[1][1] + int(abs(diffInY))
     transformedBoundingBox[1][3]= transformedBoundingBox[1][3]+ int(abs(diffInY))
@@ -383,7 +390,7 @@ def exhaustive_search(imagepath1, imagepath2, bbobPath1, bbobPath2, orientation1
     if(foundSeed == seedNum):
       maxSeedDetected = foundSeed
       # all the seed are in bounding box, proceed
-      rotationMatrixCollection[1].append(T)
+      rotMatrixToUse = T
       break
     else:
       if(foundSeed >maxSeedDetected):
@@ -404,7 +411,9 @@ def exhaustive_search(imagepath1, imagepath2, bbobPath1, bbobPath2, orientation1
   # axarr[1].imshow(imageOut2)
   
 
-  return image, image2, boundingBoxCollection, transformedBoundingBox, rotationMatrixCollection, paddingImagesCollection
+  return image, image2, boundingBoxCollection, transformedBoundingBox, rotationMatrixCollection, paddingImagesCollection, cLabelCollection
 
+  
 
 # function note: bounding box is not updated after images are rotated, translated, scaled
+

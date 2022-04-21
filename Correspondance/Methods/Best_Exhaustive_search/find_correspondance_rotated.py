@@ -18,7 +18,8 @@ from writeFile import writeFile
 import numpy as np
 import cv2
 
-def find_correspondance_rotated(image, image2, boundingBoxCollection, rotationMatrixCollection, paddingImagesCollection, bbobPath1, bbobPath2):
+def find_correspondance_rotated(image, image2, boundingBoxCollection, rotationMatrixCollection, paddingImagesCollection, bbobPath1, bbobPath2, cLabelCollection, source_orientation, dest_orientation, setNum, seedType, writeToFile= False):
+  correctlyCountedSeeds = 0
   color = (255, 0, 0)
   color2 = (250,218,94)
   thickness = 10
@@ -50,6 +51,7 @@ def find_correspondance_rotated(image, image2, boundingBoxCollection, rotationMa
   y_maxIndexT = boundingBox1[3]
   
   createFile(bbobPath1)
+  createFile(bbobPath2)
 
   for index in range(numOfSeeds):
     # The seed center from image two
@@ -107,6 +109,10 @@ def find_correspondance_rotated(image, image2, boundingBoxCollection, rotationMa
         # write coordinate for right, left, front, rear
         writeFile(x_minIndexT[index2], y_minIndexT[index2], x_maxIndexT[index2], y_maxIndexT[index2], bbobPath1, numOfSeeds)
 
+        # check if correspondance is detected correctly
+        if(cLabelCollection[0][index2] == cLabelCollection[1][index]):
+          correctlyCountedSeeds = correctlyCountedSeeds + 1
+        
         # outgrageous number so the seed would not be considered as corresponding afterwards
         x_minIndexT[index2] =9999
         y_minIndexT[index2] = 9999
@@ -162,6 +168,10 @@ def find_correspondance_rotated(image, image2, boundingBoxCollection, rotationMa
       # write coordinate for right, left, front, rear
       writeFile(x_minIndexT[indexLocation2], y_minIndexT[indexLocation2], x_maxIndexT[indexLocation2], y_maxIndexT[indexLocation2], bbobPath1, numOfSeeds)
       
+      # check if correspondance is detected correctly
+      if(cLabelCollection[0][indexLocation2] == cLabelCollection[1][index]):
+          correctlyCountedSeeds = correctlyCountedSeeds + 1
+
      # outgrageous number so the seed would not be considered as corresponding afterwards
       x_minIndexT[indexLocation2] = 9999
       y_minIndexT[indexLocation2] = 9999
@@ -170,8 +180,18 @@ def find_correspondance_rotated(image, image2, boundingBoxCollection, rotationMa
 
     image2 = cv2.rectangle(image2, (x_minIndexT2[index], y_minIndexT2[index]), (x_maxIndexT2[index], y_maxIndexT2[index]), color, thickness)
     image2 = cv2.putText(image2, str(index), (int(xCenterIndex2) - 40, int(yCenterIndex2)+ 40) , cv2.FONT_HERSHEY_SIMPLEX, 3, color2, 10, cv2.LINE_AA)
-
+    writeFile(x_minIndexT2[index], y_minIndexT2[index], x_maxIndexT2[index], y_maxIndexT2[index], bbobPath2, numOfSeeds)
   
-  # print(numOfSeeds)
-  # plt.imshow(transImage)
+  accuracyDetectedSeed = (correctlyCountedSeeds/numOfSeeds)* 100
+  print("Number of correctly detected seeds is: ")
+  print(accuracyDetectedSeed)
+
+  if(writeToFile):
+    
+    filename = os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/correspondanceAccuracy.csv"
+
+    with open(filename, 'a') as csvfile:
+      csvwriter = csv.writer(csvfile)
+      csvwriter.writerow([seedType, setNum, source_orientation, dest_orientation, accuracyDetectedSeed])
+
   return image, image2
