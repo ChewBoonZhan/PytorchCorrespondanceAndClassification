@@ -32,7 +32,8 @@ if __name__ == '__main__':
         for dest_orientation in dest_orientation_list:
             (image1, image2, boundingBoxCollection, transformedBoundingBox, rotationMatrixCollection, paddingImagesCollection, cLabel) = exhaustive_search(
                 os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/" + seedType+ "_seeds/S" + str(setNum) + "/" + source_orientation + "_S" + str(setNum) + ".jpg", os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/" + seedType + "_seeds/S" + str(setNum) + "/" + dest_orientation + "_S" + str(setNum) + ".jpg", 
-                os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + source_orientation + "/", os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + dest_orientation + "/", 
+                os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + source_orientation + "/", 
+                os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + dest_orientation + "/", 
                 source_orientation, dest_orientation)
             # as can be seen, with exhaustive search (top) the image is much more aligned on top of one another
             # without exhaustive search (bottom) the image looks worse

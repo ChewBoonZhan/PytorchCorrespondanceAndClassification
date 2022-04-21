@@ -8,42 +8,42 @@ from loadImageExtractSeed import loadImage
 
 def extract_seeds():
 
-  pathTrain = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/Training'
+  pathTrain = os.getcwd() + '/../../Data/ProcessedData/SIFT_try/Training'
   isExist = os.path.exists(pathTrain)
   #if directory doesnt exist
   if not isExist: 
     # Create a new directory 
     os.makedirs(pathTrain)
 
-  pathTest = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/Testing'
+  pathTest = os.getcwd() + '/../../Data/ProcessedData/SIFT_try/Testing'
   isExist = os.path.exists(pathTest)
   #if directory doesnt exist
   if not isExist: 
     # Create a new directory 
     os.makedirs(pathTest)
 
-  pathTrainGood = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/Training/Good_seeds'
+  pathTrainGood = os.getcwd() + '/../../Data/ProcessedData/SIFT_try/Training/Good_seeds'
   isExist = os.path.exists(pathTrainGood)
   #if directory doesnt exist
   if not isExist: 
     # Create a new directory 
     os.makedirs(pathTrainGood)
 
-  pathTrainBad = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/Training/Bad_seeds'
+  pathTrainBad = os.getcwd() + '/../../Data/ProcessedData/SIFT_try/Training/Bad_seeds'
   isExist = os.path.exists(pathTrainBad)
   #if directory doesnt exist
   if not isExist: 
     # Create a new directory 
     os.makedirs(pathTrainBad)
 
-  pathTestGood = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/Testing/Good_seeds'
+  pathTestGood = os.getcwd() + '/../../Data/ProcessedData/SIFT_try/Testing/Good_seeds'
   isExist = os.path.exists(pathTestGood)
   #if directory doesnt exist
   if not isExist: 
     # Create a new directory 
     os.makedirs(pathTestGood)
 
-  pathTestBad = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/Testing/Bad_seeds'
+  pathTestBad = os.getcwd() + '/../../Data/ProcessedData/SIFT_try/Testing/Bad_seeds'
   isExist = os.path.exists(pathTestBad)
   #if directory doesnt exist
   if not isExist: 
@@ -56,6 +56,7 @@ def extract_seeds():
       path = pathTrainGood + '/S'+ str(index+1) # example /SIFT_try/Training/Good_seeds/S1
     else:
       path = pathTestGood + '/S'+ str(index+1) # example /SIFT_try/Training/Good_seeds/S1
+    
     isExist = os.path.exists(path)
     #if directory doesnt exist
     if not isExist: 
@@ -65,6 +66,7 @@ def extract_seeds():
     print("Cropping good seeds Set" + str(index+1) + "...")
     #load set
     image_top = loadImage("Good_seeds", "top", index+1, False)
+    #print(image_top.shape)
     image_right = loadImage("Good_seeds", "right", index+1, False)
     image_left = loadImage("Good_seeds", "left", index+1, False)
     image_front = loadImage("Good_seeds", "front", index+1, False)
@@ -142,3 +144,8 @@ def extract_seeds():
       cv2.imwrite(path + "/left.jpg", seedImageCollection_left[index_seed])
       cv2.imwrite(path + "/front.jpg", seedImageCollection_front[index_seed])
       cv2.imwrite(path + "/rear.jpg", seedImageCollection_rear[index_seed])
+
+
+if __name__ == '__main__':
+
+  extract_seeds()

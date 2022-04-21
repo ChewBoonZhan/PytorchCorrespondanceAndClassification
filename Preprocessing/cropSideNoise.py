@@ -12,7 +12,7 @@ import os
 def cropSideNoise(seedImageCollection, seedType, imageViewAngle, setNumber):
 
   #retrieve bbox csv of original images
-  csv_header = ["placeholder", "x_min", "y_min", "x_max", "y_max", "pad"]
+  csv_header = ["placeholder", "x_min", "y_min", "x_max", "y_max", "pad", "cLabel"]
   
   file_path = os.getcwd() + "/../Data/OriginalData/BBOX_Record/" + seedType + "/set" + str(setNumber) + "/" + imageViewAngle + "/"
   df = pd.read_csv(file_path + "bbox_record.csv")
@@ -20,6 +20,9 @@ def cropSideNoise(seedImageCollection, seedType, imageViewAngle, setNumber):
   y_min = np.array(df.iloc[:,2].values)
   x_max = np.array(df.iloc[:,3].values)
   y_max = np.array(df.iloc[:,4].values)
+
+  # new corresponding label
+  c_label = np.array(df.iloc[:,6].values)
 
   imgShape = seedImageCollection.shape
 
@@ -95,12 +98,17 @@ def cropSideNoise(seedImageCollection, seedType, imageViewAngle, setNumber):
     startY = (newY_min[index]).astype("int")
     endX = (newX_max[index]).astype("int")
     endY = (newY_max[index]).astype("int")
-    rowsCsv.append([1, startX, startY, endX, endY])
+
+    # corresponding label
+    cLabelIndex = (c_label[index]).astype("int")
+
+    rowsCsv.append([1, startX, startY, endX, endY, 1, cLabelIndex])
   
   with open(outcsv, 'w', newline='', encoding='UTF8') as fileCsv:
     writer = csv.writer(fileCsv)
     writer.writerow(csv_header)
-  
+
+
     writer.writerows(rowsCsv)
 
 
