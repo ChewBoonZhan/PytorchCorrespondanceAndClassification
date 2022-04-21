@@ -7,18 +7,11 @@ from dataset import loadTestData, loadTrainData
 
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 import os
 import torch
-from PIL import Image
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-import torchvision
-from torchvision import datasets, transforms
-from torchvision.utils import save_image
 from torch.utils.data import TensorDataset, DataLoader
 from skimage.feature import hog
 from sklearn.metrics import classification_report
@@ -51,8 +44,6 @@ def hog_linearlayer():
        testLabel.append(testData[i][0][1])
 
    #extract hog of training
-   #trainDataHog = []
-   #numTrainData = len(trainData)
    print("\nExtract Hog Features from Training datasets...")
    for trainDataIndex in range(len(trainData)):
         trainPathCollection = trainData[trainDataIndex]
@@ -67,8 +58,6 @@ def hog_linearlayer():
         trainDataHog.append(trainDataHogIndex)
     
    #extract hog of testing
-   #testDataHog = []
-   #numTestData = len(testData)
    print("\nExtract Hog Features from Testing datasets...")
    for testDataIndex in range(len(testData)):
        testPathCollection = testData[testDataIndex]
