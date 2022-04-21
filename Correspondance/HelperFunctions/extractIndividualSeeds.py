@@ -8,42 +8,42 @@ from loadImageExtractSeed import loadImage
 
 def extract_seeds():
 
-  pathTrain = os.getcwd() + '/../../Data/ProcessedData/SIFT_try/Training'
+  pathTrain = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/Training'
   isExist = os.path.exists(pathTrain)
   #if directory doesnt exist
   if not isExist: 
     # Create a new directory 
     os.makedirs(pathTrain)
 
-  pathTest = os.getcwd() + '/../../Data/ProcessedData/SIFT_try/Testing'
+  pathTest = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/Testing'
   isExist = os.path.exists(pathTest)
   #if directory doesnt exist
   if not isExist: 
     # Create a new directory 
     os.makedirs(pathTest)
 
-  pathTrainGood = os.getcwd() + '/../../Data/ProcessedData/SIFT_try/Training/Good_seeds'
+  pathTrainGood = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/Training/Good_seeds'
   isExist = os.path.exists(pathTrainGood)
   #if directory doesnt exist
   if not isExist: 
     # Create a new directory 
     os.makedirs(pathTrainGood)
 
-  pathTrainBad = os.getcwd() + '/../../Data/ProcessedData/SIFT_try/Training/Bad_seeds'
+  pathTrainBad = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/Training/Bad_seeds'
   isExist = os.path.exists(pathTrainBad)
   #if directory doesnt exist
   if not isExist: 
     # Create a new directory 
     os.makedirs(pathTrainBad)
 
-  pathTestGood = os.getcwd() + '/../../Data/ProcessedData/SIFT_try/Testing/Good_seeds'
+  pathTestGood = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/Testing/Good_seeds'
   isExist = os.path.exists(pathTestGood)
   #if directory doesnt exist
   if not isExist: 
     # Create a new directory 
     os.makedirs(pathTestGood)
 
-  pathTestBad = os.getcwd() + '/../../Data/ProcessedData/SIFT_try/Testing/Bad_seeds'
+  pathTestBad = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/Testing/Bad_seeds'
   isExist = os.path.exists(pathTestBad)
   #if directory doesnt exist
   if not isExist: 

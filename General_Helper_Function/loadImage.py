@@ -14,7 +14,6 @@ def loadImage(seedType, imageViewAngle, setNumber, original=True):
                + "_S" + str(setNumber) + ".jpg")
 
   image = cv2.imread(file_path)
-  print(image.shape)
   return image
 
 
