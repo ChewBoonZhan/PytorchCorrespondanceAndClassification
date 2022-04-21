@@ -31,15 +31,15 @@ if __name__ == '__main__':
 
         for dest_orientation in dest_orientation_list:
             (image1, image2, boundingBoxCollection, transformedBoundingBox, rotationMatrixCollection, paddingImagesCollection, cLabel) = exhaustive_search(
-                "SIFT_try/" + seedType+ "_seeds/S" + str(setNum) + "/" + source_orientation + "_S" + str(setNum) + ".jpg", "SIFT_try/" + seedType + "_seeds/S" + str(setNum) + "/" + dest_orientation + "_S" + str(setNum) + ".jpg", 
-                "SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + source_orientation + "/", "SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + dest_orientation + "/", 
+                os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/" + seedType+ "_seeds/S" + str(setNum) + "/" + source_orientation + "_S" + str(setNum) + ".jpg", os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/" + seedType + "_seeds/S" + str(setNum) + "/" + dest_orientation + "_S" + str(setNum) + ".jpg", 
+                os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + source_orientation + "/", os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + dest_orientation + "/", 
                 source_orientation, dest_orientation)
             # as can be seen, with exhaustive search (top) the image is much more aligned on top of one another
             # without exhaustive search (bottom) the image looks worse
 
             # cant run the bottom one, cause it'll call "create_file"
-            image1, image2 = find_correspondance_rotated(image1, image2, boundingBoxCollection, rotationMatrixCollection, paddingImagesCollection, "SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + source_orientation + "/", "SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + dest_orientation + "/", cLabel, source_orientation, dest_orientation, setNum, seedType, True)
-            path_to_results = 'SIFT_try/'+ seedType  + '_seeds'+ '/S' + str(setNum) + '/Results_' + methodUsed + '/'
+            image1, image2 = find_correspondance_rotated(image1, image2, boundingBoxCollection, rotationMatrixCollection, paddingImagesCollection, os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + source_orientation + "/", os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + dest_orientation + "/", cLabel, source_orientation, dest_orientation, setNum, seedType, True)
+            path_to_results = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/'+ seedType  + '_seeds'+ '/S' + str(setNum) + '/Results_' + methodUsed + '/'
             isExist = os.path.exists(path_to_results)
 
             if not isExist:
@@ -58,15 +58,15 @@ if __name__ == '__main__':
 
         for dest_orientation in dest_orientation_list:
             (image1, image2, boundingBoxCollection, transformedBoundingBox, rotationMatrixCollection, paddingImagesCollection, cLabel) = exhaustive_search(
-                "SIFT_try/" + seedType+ "_seeds/S" + str(setNum) + "/" + source_orientation + "_S" + str(setNum) + ".jpg",  "SIFT_try/" + seedType + "_seeds/S" + str(setNum) + "/" + dest_orientation + "_S" + str(setNum) + ".jpg", 
-                "SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + source_orientation + "/", "SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + dest_orientation + "/", 
+                os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/" + seedType+ "_seeds/S" + str(setNum) + "/" + source_orientation + "_S" + str(setNum) + ".jpg",  os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/" + seedType + "_seeds/S" + str(setNum) + "/" + dest_orientation + "_S" + str(setNum) + ".jpg", 
+                os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + source_orientation + "/", os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + dest_orientation + "/", 
                 source_orientation, dest_orientation)
             # as can be seen, with exhaustive search (top) the image is much more aligned on top of one another
             # without exhaustive search (bottom) the image looks worse
 
             # cant run the bottom one, cause it'll call "create_file"
-            image1, image2 = find_correspondance_rotated(image1, image2, boundingBoxCollection, rotationMatrixCollection, paddingImagesCollection, "SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + source_orientation + "/", "SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + dest_orientation + "/", cLabel, source_orientation, dest_orientation, setNum, seedType, True)
-            path_to_results = 'SIFT_try/'+ seedType + '_seeds'+ '/S' + str(setNum) + '/Results_' + methodUsed + '/'
+            image1, image2 = find_correspondance_rotated(image1, image2, boundingBoxCollection, rotationMatrixCollection, paddingImagesCollection, os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + source_orientation + "/", os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + dest_orientation + "/", cLabel, source_orientation, dest_orientation, setNum, seedType, True)
+            path_to_results = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/'+ seedType + '_seeds'+ '/S' + str(setNum) + '/Results_' + methodUsed + '/'
             isExist = os.path.exists(path_to_results)
 
             if not isExist:
