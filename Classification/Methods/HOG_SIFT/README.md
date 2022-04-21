@@ -1,4 +1,4 @@
-## Classification using HOG & SVM
+## Classification using HOG & SIFT & SVM
 
 In this method, we are using both HOG and SIFT as feature extractor for seed images. 
 <br/>
