@@ -59,7 +59,6 @@ In the terminal,
 ```
 conda create --name py3 python=3.7.10
 ```
-<br />
 
 To activate the environment:
 ```
@@ -77,10 +76,13 @@ Note: if you already have Python 3.7.10 installed, and for the subsequent runnin
 <img src = "https://i.imgur.com/30715yI.png" height = 300/>
 
 #### For Mac:
-1. Make sure you Clang installed on your machine. For how, check this [guide](https://code.visualstudio.com/docs/cpp/config-clang-mac).
+1. Make sure Clang is installed on your machine. For how, check this [guide](https://code.visualstudio.com/docs/cpp/config-clang-mac).
 
 <br/>
-In the project folder, there is a file called requirements.txt, which contains a list of the libraries needed to be installed. To install all the libraries, open a terminal at your project folder location and type:<br/>
+In the project folder, there is a file called requirements.txt, which contains a list of the libraries needed to be installed. To install all the libraries:
+
+1. Open a terminal at your project folder
+2. Type:
 
 ```
 1. pip install --upgrade setuptools
@@ -147,8 +149,6 @@ Navigate to this project location on your machine and open a terminal. At the te
 ```
 Note: These are the steps to find seed correspondence and classification using the **ideal methods**.
 To also try out our **less satisfatory methods**,
-
-<br/>
 
 #### -> Correspondence - Seed Center + SIFT + Canny
 1. Go to "Correspondance" > "Bulk_processing" > "Seed_center_line_canny_SIFT"
