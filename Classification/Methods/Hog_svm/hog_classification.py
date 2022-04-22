@@ -17,7 +17,6 @@ from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from save_results_csv import save_results_csv
 from save_results_corr_image import save_results_corr_image
-import pickle
 
 trainData = loadTrainData()
 testData = loadTestData()
@@ -51,15 +50,14 @@ def extract_hog_feature():
     return hog_train, hog_test
 
 def svm(hog_train, hog_test):
-    loaded_model = pickle.load(open('svm_model_hog.sav','rb'))
     y = []
     for i in range(len(trainData)):
         y.append(trainData[i][0][1])
 
     #train classification model
     print("\nTrain the SVM model")
-    # clf=LinearSVC(max_iter=80000)    
-    # clf.fit(hog_train, y)
+    clf=LinearSVC(max_iter=80000)    
+    clf.fit(hog_train, y)
 
     y_test = []
     for i in range(len(testData)):
@@ -67,8 +65,7 @@ def svm(hog_train, hog_test):
 
     #run on the trained model
     print("\nRunning testing seeds on the trained SVM model...")
-    # y_pred = clf.predict(hog_test)
-    y_pred = loaded_model.predict(hog_test)
+    y_pred = clf.predict(hog_test)
 
     #assign the actual name of seed classes instead of 0 and 1
     true_classes_hog=[]

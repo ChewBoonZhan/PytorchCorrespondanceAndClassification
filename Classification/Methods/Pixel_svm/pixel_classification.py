@@ -13,7 +13,6 @@ from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from save_results_csv import save_results_csv
 from save_results_corr_image import save_results_corr_image
-import pickle
 
 trainData = loadTrainData()
 testData = loadTestData()
@@ -43,16 +42,14 @@ def extract_pixel_feature():
     return pixel_train, pixel_test
 
 def svm(pixel_train, pixel_test):
-    loaded_model = pickle.load(open('svm_model_pixel.sav','rb'))
-
     y = []
     for i in range(len(trainData)):
         y.append(trainData[i][0][1])
     
     #train classification model
     print("\nTrain the SVM model")
-    # clf=LinearSVC(max_iter=80000)    
-    # clf.fit(pixel_train, y)
+    clf=LinearSVC(max_iter=80000)    
+    clf.fit(pixel_train, y)
 
     y_test = []
     for i in range(len(testData)):
@@ -60,8 +57,7 @@ def svm(pixel_train, pixel_test):
 
     #run on the trained model
     print("\nRunning testing seeds on the trained SVM model...")
-    # y_pred = clf.predict(pixel_test)
-    y_pred = loaded_model.predict(pixel_test)
+    y_pred = clf.predict(pixel_test)
 
     #assign the actual name of seed classes instead of 0 and 1
     true_classes_pixel=[]

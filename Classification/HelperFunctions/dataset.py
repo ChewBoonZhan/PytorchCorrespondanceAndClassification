@@ -7,6 +7,8 @@ def loadTrainData():
     training_path_bad = os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/Training/Bad_seeds"
     training_path_good = os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/Training/Good_seeds"
 
+    views=['top','right','left','front','rear'] #load training seeds in this exact order
+
     #a list of img paths + labels where each element in the list is the paths to all views for 1 seed 
     trainData=[]
 
@@ -30,9 +32,9 @@ def loadTrainData():
 
                 img_seed=[] #paths for all views per seed 
 
-                for view in os.listdir(path_to_seed): #return top.jpg, right.jpg,...
-
-                    path_to_seed_view = os.path.join(path_to_seed, view) #'.../S1/Seed1/top.jpg'
+                for view in views: #return top.jpg, right.jpg,...
+                    view_name= view + '.jpg'
+                    path_to_seed_view = os.path.join(path_to_seed, view_name) #'.../S1/Seed1/top.jpg'
 
                     img_seed.append((path_to_seed_view,0)) #['.../S1/Seed1/top.jpg', '.../S1/Seed1/right.jpg',....]
                     writer.writerow([path_to_seed_view, 0])
@@ -55,9 +57,9 @@ def loadTrainData():
 
                 img_seed=[] #paths for all views per seed 
 
-                for view in os.listdir(path_to_seed): #return top.jpg, right.jpg,...
-
-                    path_to_seed_view = os.path.join(path_to_seed, view) #'.../S1/Seed1/top.jpg'
+                for view in views: #return top.jpg, right.jpg,...
+                    view_name= view + '.jpg'
+                    path_to_seed_view = os.path.join(path_to_seed, view_name) #'.../S1/Seed1/top.jpg'
         
                     img_seed.append((path_to_seed_view,1)) #['.../S1/Seed1/top.jpg', '.../S1/Seed1/right.jpg',....]
                     writer.writerow([path_to_seed_view, 1])
@@ -98,7 +100,6 @@ def loadTestData():
                 img_seed=[] #paths for all views per seed 
 
                 for view in views: #return top.jpg, right.jpg,...
-
                     view_name= view + '.jpg'
                     path_to_seed_view = os.path.join(path_to_seed, view_name) #'.../S10/Seed1/top.jpg'
 
@@ -134,7 +135,3 @@ def loadTestData():
 
     print('\nTesting dataset created')
     return testData
-
-if __name__ == '__main__':
- 
-    print(os.path. exists(os.getcwd() + "/../../Data/ProcessedData/training_data.csv"))
