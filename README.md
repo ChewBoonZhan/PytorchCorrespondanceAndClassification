@@ -176,6 +176,12 @@ To also try out our **less satisfatory methods**,
 
 <br/>
 
+#### -> Classification - Pixel + SVM
+1. Go to "Classification" > "Methods" > "Pixel_svm"
+2. Type "python main.py" to run the code.
+
+<br/>
+
 #### -> Classification - SIFT + SVM
 1. Go to "Classification" > "Methods" > "SIFT_svm"
 2. Type "python main.py" to run the code.
