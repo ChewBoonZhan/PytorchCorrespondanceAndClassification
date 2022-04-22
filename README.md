@@ -91,6 +91,12 @@ In the project folder, there is a file called requirements.txt, which contains a
 
 This shall start the installation.
 <br/>
+However, if you still face issue importing torch, you might need to install it manually using this command
+```
+1. pip uninstall torch
+2. pip uninstall torchvision
+3. conda install pytorch torchvision torchaudio cpuonly -c pytorch
+```
 
 <b>Important~~</b> <br />
 If during the development of the project, you face dependency issue, please search for the required dependency online, and add it to "requirements.txt" at the root of this project. After doing that, run the above command. This helps other people who dont have the dependency on their laptop to install and use the same dependency as you too when they run the command above. Thanks.

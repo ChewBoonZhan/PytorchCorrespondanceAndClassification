@@ -4,6 +4,7 @@ numpy
 matplotlib
 pandas
 torch
+torchvision
 Pillow
 python-csv
 python-math
