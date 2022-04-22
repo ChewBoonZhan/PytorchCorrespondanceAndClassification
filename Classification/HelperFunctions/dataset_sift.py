@@ -9,6 +9,8 @@ def loadTrainData():
     #a list of img paths where each element in the list is the paths to all views for 1 seed 
     trainData=[]
 
+    views=["top","right","left","front","rear"]
+
     
     for i in (n+1 for n in range(9)): #Set 1 to 9 for Bad seeds
   
@@ -23,9 +25,10 @@ def loadTrainData():
 
             path_to_seed = os.path.join(path_to_set,seed) # 'SIFT_try/Training/Bad_seeds/S1/Seed1'
 
-            for view in os.listdir(path_to_seed): #return top.jpg, right.jpg,...
+            for view in views: #return top.jpg, right.jpg,...
 
-               path_to_seed_view = os.path.join(path_to_seed, view) # '.../S1/Seed1/top.jpg'
+               view_name = view+".jpg"
+               path_to_seed_view = os.path.join(path_to_seed, view_name) # '.../S1/Seed1/top.jpg'
                trainData.append((path_to_seed_view,0))
 
 
@@ -42,9 +45,9 @@ def loadTrainData():
 
             path_to_seed = os.path.join(path_to_set,seed) # 'SIFT_try/Training/Good_seeds/S1/Seed1'
 
-            for view in os.listdir(path_to_seed): #return top.jpg, right.jpg,...
-
-                path_to_seed_view = os.path.join(path_to_seed, view) #'.../S1/Seed1/top.jpg'
+            for view in views: #return top.jpg, right.jpg,...
+                view_name = view+".jpg"
+                path_to_seed_view = os.path.join(path_to_seed, view_name) #'.../S1/Seed1/top.jpg'
                 trainData.append((path_to_seed_view,1))
 
     print('\nTraining Dataset created.')
@@ -58,7 +61,7 @@ def loadTestData():
     testing_path_bad = os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/Testing/Bad_seeds"
     testing_path_good = os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/Testing/Good_seeds"
 
-    view=['top','right','left','front','rear']
+    views=['top','right','left','front','rear']
 
     testData=[]
 
@@ -74,7 +77,7 @@ def loadTestData():
 
             path_to_seed = os.path.join(path_to_set,seed) # 'SIFT_try/Testing/Bad_seeds/S10/Seed1'
 
-            for j in view:
+            for j in views:
                 view_name = j+'.jpg'
                 path_to_seed_view = os.path.join(path_to_seed, view_name) #'.../S10/Seed1/top.jpg'
                 testData.append((path_to_seed_view,0))
@@ -93,7 +96,7 @@ def loadTestData():
         
             path_to_seed = os.path.join(path_to_set,seed) # 'SIFT_try/Testing/Good_seeds/S9/Seed1'
 
-            for j in view:
+            for j in views:
                 view_name = j+'.jpg'
                 path_to_seed_view = os.path.join(path_to_seed, view_name) #'.../S9/Seed1/top.jpg'
                 testData.append((path_to_seed_view,1))
