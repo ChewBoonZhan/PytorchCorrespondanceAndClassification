@@ -40,6 +40,8 @@ if __name__ == '__main__':
             # without exhaustive search (bottom) the image looks worse
 
             # cant run the bottom one, cause it'll call "create_file"
+            #image 2 - source
+            #image 1 - destination 
             image1, image2 = find_correspondance_rotated(image1, image2, boundingBoxCollection, rotationMatrixCollection, paddingImagesCollection, os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + dest_orientation + "/", os.getcwd() + "/../../../Data/ProcessedData/SIFT_try/BBOX/" + seedType + "_seeds/S" + str(setNum) + "/" + source_orientation + "/", cLabel, dest_orientation, source_orientation, setNum, seedType, True)
             path_to_results = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/'+ seedType  + '_seeds'+ '/S' + str(setNum) + '/Results_' + methodUsed + '/'
             isExist = os.path.exists(path_to_results)
@@ -48,9 +50,9 @@ if __name__ == '__main__':
                 # Create a new directory because it does not exist 
                 os.makedirs(path_to_results)
                 print("The new directory is created!")
-            cv2.imwrite(os.path.join(path_to_results, 'correspondence_' + dest_orientation + "2" + source_orientation + ".jpg"), merge_images_v(image1, image2))
+            cv2.imwrite(os.path.join(path_to_results, 'correspondence_' + source_orientation + "2" + dest_orientation + ".jpg"), merge_images_v(image2, image1))
 
-            print("Saving images of correspondence for ", seedType, " Set ", str(setNum), " top with ", dest_orientation, " to folder")
+            print("Saving images of correspondence for ", seedType, " Set ", str(setNum), " ", source_orientation, " with ", dest_orientation, " to folder")
 
 
     for i in (n+1 for n in range(10)): #set number 1 to 12
@@ -78,9 +80,9 @@ if __name__ == '__main__':
                 os.makedirs(path_to_results)
                 print("The new directory is created!")
 
-            cv2.imwrite(os.path.join(path_to_results, 'correspondence_' + dest_orientation + "2" + source_orientation + ".jpg"), merge_images_v(image1, image2))
+            cv2.imwrite(os.path.join(path_to_results, 'correspondence_' + source_orientation + "2" + dest_orientation + ".jpg"), merge_images_v(image2, image1))
 
-            print("Saving images of correspondence for ", seedType, " Set ", str(setNum), " top with ", dest_orientation, " to folder")
+            print("Saving images of correspondence for ", seedType, " Set ", str(setNum), " ", source_orientation, " with ", dest_orientation, " to folder")
     calculateAccuracyCorrespondance()
     
     #crop individual seeds out based on correspondence
