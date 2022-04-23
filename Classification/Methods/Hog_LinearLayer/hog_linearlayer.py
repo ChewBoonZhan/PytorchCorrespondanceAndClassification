@@ -77,9 +77,6 @@ def hog_linearlayer():
        
    testDataHog = np.array(testDataHog)
 
-#    print(testData[0][0][0])
-#    print(testData[0][0][0].split('Seed')[1].split('\\')[0])
-
    #load to tensor
    print("\nLoading to Tensor...")
    train_loader = tensor_train(trainDataHog,trainLabel)
@@ -271,7 +268,7 @@ def run_linearlayermodel(train_loader, tensorTestData):
             img_path = path_to_badseeds + str(data.iloc[i][0]) + '/'
             bbox_path = path_to_bbox_badseeds + str(data.iloc[i][0]) + '/'
             good = False
-        print(bbox_path)
+        
         for j in range(len(view)):
             print("Saving Classification Set",str(data.iloc[i][0]), str(data.iloc[i][2]) ,view[j])
             img_path_view = img_path + view[j] + '_S' + str(data.iloc[i][0]) + '.jpg'
@@ -356,7 +353,6 @@ class LinearClassifier(torch.nn.Module):
     def __init__(self):
         super(LinearClassifier, self).__init__()
 
-        print(len(trainDataHog[0]))
         self.l1 = torch.nn.Linear(len(trainDataHog[0]), 1)  
         # since detect wether it is good or bad, can use thresholding at 0.5 to detect good or bad seed
         
