@@ -101,7 +101,7 @@ def evaluate_hog(hog_train, hog_test):
     image_paths_test = []
     for i in np.array(testData)[:, 0, 0]:
         image_paths_test.append(i)
-
+    
     false_score_good_hog, false_score_bad_hog, true_score_good_hog, true_score_bad_hog, total_bad_seeds_hog, total_good_seeds_hog = save_results_csv(path, path_csv_hog, true_classes_hog, predict_classes_hog, image_paths_test)
 
     print("\nTotal bad testing seeds: ", total_bad_seeds_hog)
@@ -122,4 +122,4 @@ def evaluate_hog(hog_train, hog_test):
         seed_set.append(i.split('/')[-3].split('S')[1]) # set of seeds
         type.append(i.split('/')[-4]) # type of seeds
 
-    # save_results_corr_image(path_to_results_bad_seeds,path_to_results_good_seeds, len(testData), y_pred, seed_set, type)
+    save_results_corr_image(path_to_results_bad_seeds,path_to_results_good_seeds, len(testData), y_pred, seed_set, type)
