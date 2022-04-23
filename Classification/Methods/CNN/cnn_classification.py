@@ -17,6 +17,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import TensorDataset, DataLoader
 from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
 
 import csv
 import pandas as pd
@@ -270,6 +271,8 @@ def run_CNN(train_loader, tensorTestData):
 
     #generate report
     print(classification_report(actualLabel, predictedLabelThresholded, target_names = ['Good Seeds', 'Bad Seeds']))
+    print("\nConfusion Matrix")
+    print(confusion_matrix(actualLabel, predictedLabelThresholded, labels=range(2)))
     
     
     actualWordLabel = convertLabel(actualLabel)
@@ -312,17 +315,17 @@ def run_CNN(train_loader, tensorTestData):
                     false_score_good+=1
                     total_good_seeds+=1
     
-    print("Total bad testing seeds: ", total_bad_seeds)
+    print("\nTotal bad testing seeds: ", total_bad_seeds)
     print("No. of Bad seeds detected correctly: ", true_score_bad)
     print("No. of Bad seeds detected wrongly: ", false_score_bad)
     print("Accuracy for bad seeds: ",true_score_bad/total_bad_seeds)
-    #print(false_score_bad/total_bad_seeds)
+    
 
-    print("Total good testing seeds: ",total_good_seeds)
+    print("\nTotal good testing seeds: ",total_good_seeds)
     print("No. of Good seeds detected correctly: ", true_score_good)
     print("No. of Good seeds detected wrongly: ", false_score_good)
     print("Accuracy for good seeds: ", true_score_good/total_good_seeds)
-    #print(false_score_good/total_good_seeds)
+    
 
     data= pd.read_csv(path_csv)
 
