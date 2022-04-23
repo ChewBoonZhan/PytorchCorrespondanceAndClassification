@@ -43,10 +43,12 @@ def save_results_image(path_to_results_bad_seeds, path_to_results_good_seeds, pr
           img_path = path_to_goodseeds + str(i) + '/'
           bbox_path = path_to_bbox_goodseeds + str(i) + '/'
           good = True
+          seed_type="Good"
        else: #bad seeds set 10,11,12
            img_path = path_to_badseeds + str(i) + '/'
            bbox_path = path_to_bbox_badseeds + str(i) + '/'
            good = False
+           seed_type="Bad"
 
        for j in range(len(view)): #for each view of the seed set 
 
@@ -54,6 +56,7 @@ def save_results_image(path_to_results_bad_seeds, path_to_results_good_seeds, pr
           img_path_view = img_path + view[j] + '_S' + str(i) + '.jpg'
           #print(img_path_view)
           img=cv2.imread(img_path_view)
+          print("Saving Classification Set ",str(i), " ",seed_type,"_seeds ", view[j] )
 
           #set path to the bbox of the view image
           bbox_path_view = bbox_path + view[j] + '/'

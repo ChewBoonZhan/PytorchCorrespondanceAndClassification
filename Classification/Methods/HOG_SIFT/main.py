@@ -16,4 +16,4 @@ if __name__ == '__main__':
     #combine HOG bof + SIFT bof -> SVM training
     combine_hog_sift(train_hog_features, test_hog_features,train_features, test_features, train_labels, test_labels, image_paths_test)
 
-    print("Done")
+    print("Done.")
