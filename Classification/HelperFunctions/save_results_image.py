@@ -81,8 +81,8 @@ def save_results_image(path_to_results_bad_seeds, path_to_results_good_seeds, pr
               #check if we're retrieving from the correct image 
               test_img = image_paths[(5*numberOfSeeds_prev)+j+(index*5)]
 
-              print(test_img)
-              print(pred_label,"Set ",str(i)," ",view[j], " Seed ",index+1)
+              #print(test_img)
+              #print(pred_label,"Set ",str(i)," ",view[j], " Seed ",index+1)
 
               if(pred_label==1): #predicted GoodSeed - green colour
                 color=(0,255,0)
