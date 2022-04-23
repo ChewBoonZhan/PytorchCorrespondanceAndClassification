@@ -92,8 +92,8 @@ def evaluate_pixel(pixel_train, pixel_test):
     
     image_paths_test = []
     for i in np.array(testData)[:, 0, 0]:
-        image_paths_test.append(i.rsplit('\\', 1)[0])
-    
+        image_paths_test.append(i)
+
     false_score_good_pixel, false_score_bad_pixel, true_score_good_pixel, true_score_bad_pixel, total_bad_seeds_pixel, total_good_seeds_pixel = save_results_csv(path, path_csv_pixel, true_classes_pixel, predict_classes_pixel, image_paths_test)
 
     print("\nTotal bad testing seeds: ", total_bad_seeds_pixel)
