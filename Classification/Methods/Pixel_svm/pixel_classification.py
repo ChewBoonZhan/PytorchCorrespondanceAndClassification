@@ -109,9 +109,10 @@ def evaluate_pixel(pixel_train, pixel_test):
 
     seed_set = []
     type = []
+
     for i in np.array(image_paths_test):
-        seed_set.append(i.split('/')[-1].split('\\')[0].split('S')[1])
-        type.append(i.split('\\')[-2].split('/')[-2])
+        seed_set.append(i.split('/')[-3].split('S')[1]) # set of seeds
+        type.append(i.split('/')[-4]) # type of seeds
 
     save_results_corr_image(path_to_results_bad_seeds,path_to_results_good_seeds, len(testData), y_pred, seed_set, type)
     
