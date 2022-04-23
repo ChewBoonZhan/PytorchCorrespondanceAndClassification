@@ -52,12 +52,12 @@ def save_results_image(path_to_results_bad_seeds, path_to_results_good_seeds, pr
 
           #set path to the view image
           img_path_view = img_path + view[j] + '_S' + str(i) + '.jpg'
-          print(img_path_view)
+          #print(img_path_view)
           img=cv2.imread(img_path_view)
 
           #set path to the bbox of the view image
           bbox_path_view = bbox_path + view[j] + '/'
-          print(bbox_path_view)
+          #print(bbox_path_view)
           x_min, y_min, x_max, y_max = readBoundingBoxCSV(bbox_path_view)
 
           numberOfSeeds = x_max.shape[0]
