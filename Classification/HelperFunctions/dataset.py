@@ -134,5 +134,5 @@ def loadTestData():
 
                 testData.append(img_seed)
 
-    print('\nTesting dataset created')
+    print('\nTesting dataset created.')
     return testData
