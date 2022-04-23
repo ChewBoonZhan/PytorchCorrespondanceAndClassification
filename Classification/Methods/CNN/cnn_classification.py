@@ -17,6 +17,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import TensorDataset, DataLoader
 from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+
+from save_results_csv import save_results_csv
+from save_results_corr_image import save_results_corr_image
 
 import csv
 import pandas as pd
@@ -125,18 +129,11 @@ def cnn_classification():
             image = cv2.imread(trainPath[0]) 
             image = torch.tensor(cv2.resize(image, (input_image_size, input_image_size))).permute(2,0,1).numpy()/255
     
-    # change the color channel to front of image
-
-    # if(trainDataImageIndex.shape == np.array([1]).shape):
-    #   trainDataImageIndex = image
-    # else:
-    #   trainDataImageIndex = np.append(trainDataImageIndex, image, axis = 0)
-    
             trainDataImageIndex.append(image)
         trainDataImage.append(trainDataImageIndex)
     trainDataImage = np.array(trainDataImage)
 
-
+    
     #load Testing image into an array to be added to tensor dataset
     testDataImage = []
     for testDataIndex in range(len(testData)):
@@ -146,7 +143,7 @@ def cnn_classification():
         for testPath in testPathCollection:
             image = cv2.imread(testPath[0]) 
             image = torch.tensor(cv2.resize(image, (input_image_size, input_image_size))).permute(2,0,1).numpy()/255
-    # change the color channel to front of image
+            # change the color channel to front of image
     
             testDataImageIndex.append(image)
         testDataImage.append(testDataImageIndex)
@@ -193,15 +190,17 @@ def to_device(data, device):
 
 def run_CNN(train_loader, tensorTestData):
     
-    print("\nTraining model...")
+    
 
     learning_rate = 0.001
     num_epoch = 50
     if(os.path.exists("CNN.pth") and os.path.exists("linear.pth")):
+        print("\Loading existing model...")
         # load the model
         CNNModel.load_state_dict(torch.load("CNN.pth", map_location=device))
         linearModel.load_state_dict(torch.load("linear.pth", map_location=device))
     else:
+        print("\nTraining model...")
         for epochIndex in range(num_epoch):
             for data in train_loader:
 
@@ -250,11 +249,9 @@ def run_CNN(train_loader, tensorTestData):
         for image in imgCollection:
             # train classifier
             CNNOut = CNNModel(image)
-            # CNNOut = CNNOut.view(-1, featureShape)
             featureCollection = torch.cat((featureCollection, CNNOut), 0)
             
         linearOut = linearModel(featureCollection)
-        # print(linearOut[0].detach().to("cpu").numpy())
         
         # collect label predicted
         actualLabel.append(label.to("cpu").item())
@@ -269,7 +266,9 @@ def run_CNN(train_loader, tensorTestData):
             predictedLabelThresholded.append(0)
 
     #generate report
-    print(classification_report(actualLabel, predictedLabelThresholded, target_names = ['Good Seeds', 'Bad Seeds']))
+    print(classification_report(actualLabel, predictedLabelThresholded, target_names = ['Bad Seeds', 'Good Seeds']))
+    print("\nConfusion Matrix")
+    print(confusion_matrix(actualLabel, predictedLabelThresholded, labels=range(2)))
     
     
     actualWordLabel = convertLabel(actualLabel)
@@ -278,137 +277,31 @@ def run_CNN(train_loader, tensorTestData):
     path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/Classification_results_CNN'
     path_csv = os.path.join(path, 'classification_results.csv')
 
+    image_paths_test = []
+    for i in np.array(testData)[:, 0, 0]:
+        image_paths_test.append(i)
 
-    false_score_good=0
-    false_score_bad=0
-    true_score_good=0
-    true_score_bad=0
-    total_bad_seeds=0
-    total_good_seeds=0
+    false_score_good_hog, false_score_bad_hog, true_score_good_hog, true_score_bad_hog, total_bad_seeds_hog, total_good_seeds_hog = save_results_csv(path, path_csv, actualWordLabel, predictedWordLabel, image_paths_test)
 
-    if not os.path.exists(path_csv):
-        os.makedirs(path)
+    print("\nTotal bad testing seeds: ", total_bad_seeds_hog)
+    print("No. of Bad seeds detected correctly: ", true_score_bad_hog)
+    print("No. of Bad seeds detected wrongly: ", false_score_bad_hog)
 
-    with open(path_csv, 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(["Set","Seed","true classes", "predicted classes", "accuracy"]) # header
-
-        # create test data with the good seeds
-        for i in range(len(actualLabel)):
-            if actualWordLabel[i] == predictedWordLabel[i]: #correct
-                writer.writerow([testFilePaths[i].split('/S')[2].split('\\')[0],testFilePaths[i].split('Seed')[1].split('\\')[0], actualWordLabel[i], predictedWordLabel[i],"True"]) # get the filename in the good seed folder, and write each row with filename and 1
-                if(actualWordLabel[i]=='BadSeed'):
-                    true_score_bad+=1
-                    total_bad_seeds+=1
-                elif(actualWordLabel[i]=='GoodSeed'):
-                    true_score_good+=1
-                    total_good_seeds+=1
-            else:
-                writer.writerow([testFilePaths[i].split('/S')[2].split('\\')[0],testFilePaths[i].split('Seed')[1].split('\\')[0], actualWordLabel[i], predictedWordLabel[i],"False"])
-                if(actualWordLabel[i]=='BadSeed'):
-                    false_score_bad+=1
-                    total_bad_seeds+=1
-                elif(actualWordLabel[i]=='GoodSeed'):
-                    false_score_good+=1
-                    total_good_seeds+=1
+    print("\nTotal good testing seeds: ",total_good_seeds_hog)
+    print("No. of Good seeds detected correctly: ", true_score_good_hog)
+    print("No. of Good seeds detected wrongly: ", false_score_good_hog)
     
-    print("Total bad testing seeds: ", total_bad_seeds)
-    print("No. of Bad seeds detected correctly: ", true_score_bad)
-    print("No. of Bad seeds detected wrongly: ", false_score_bad)
-    print("Accuracy for bad seeds: ",true_score_bad/total_bad_seeds)
-    #print(false_score_bad/total_bad_seeds)
+    path_to_results_bad_seeds = os.getcwd()+ '/../../../Data/ProcessedData/SIFT_try/Classification_results_CNN/Bad_seeds/'
+    path_to_results_good_seeds = os.getcwd()+ '/../../../Data/ProcessedData/SIFT_try/Classification_results_CNN/Good_seeds/' 
 
-    print("Total good testing seeds: ",total_good_seeds)
-    print("No. of Good seeds detected correctly: ", true_score_good)
-    print("No. of Good seeds detected wrongly: ", false_score_good)
-    print("Accuracy for good seeds: ", true_score_good/total_good_seeds)
-    #print(false_score_good/total_good_seeds)
+    seed_set = []
+    seed_type = []
 
-    data= pd.read_csv(path_csv)
+    for i in np.array(image_paths_test):
+        seed_set.append(i.split('/')[-3].split('S')[1]) # set of seeds
+        seed_type.append(i.split('/')[-4]) # type of seeds
 
-    path_to_badseeds = path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/Bad_seeds/S'
-    path_to_goodseeds = path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/Good_seeds/S'
-    path_to_bbox_badseeds = path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/Bad_seeds/S'
-    path_to_bbox_goodseeds = path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/Good_seeds/S'
-
-    view=["top","right","left","front","rear"]
-
-    path_to_results_bad_seeds = path + '/Bad_seeds/'
-    path_to_results_good_seeds = path + '/Good_seeds/'
-
-    isExist_bad = os.path.exists(path_to_results_bad_seeds)
-    isExist_good = os.path.exists(path_to_results_good_seeds)
-
-    if not isExist_bad:
-        # Create a new directory because it does not exist 
-        os.makedirs(path_to_results_bad_seeds)
-        print("The new directory is created!")
-
-    if not isExist_good:
-        # Create a new directory because it does not exist 
-        os.makedirs(path_to_results_good_seeds)
-        print("The new directory is created!")
-
-    good=False
-
-    print("Saving Classification Results...")
-    i=0
-    # while i < 10:
-    while i < len(testData):
-        #set paths to img and bbox according to the set index
-        if(data.iloc[i][2] == "GoodSeed"): #good seeds 9 and 10
-            img_path = path_to_goodseeds + str(data.iloc[i][0]) + '/'
-            bbox_path = path_to_bbox_goodseeds + str(data.iloc[i][0]) + '/'
-            good = True
-        else: #bad seeds 10, 11, and 12
-            img_path = path_to_badseeds + str(data.iloc[i][0]) + '/'
-            bbox_path = path_to_bbox_badseeds + str(data.iloc[i][0]) + '/'
-            good = False
-
-        for j in range(len(view)):
-            print("Saving Classification Set",str(data.iloc[i][0]), str(data.iloc[i][2]) ,view[j])
-            img_path_view = img_path + view[j] + '_S' + str(data.iloc[i][0]) + '.jpg'
-            bbox_path_view = bbox_path +  view[j] + '/'
-            x_min, y_min, x_max, y_max = readBoundingBoxCSV(bbox_path_view, True)
-            numberOfSeeds = x_max.shape[0]
-            img=cv2.imread(img_path_view)
-            
-            for index in range(numberOfSeeds): #for each seed in the seed view image
-                #get its predicted label      
-                pred_label = predictedLabelThresholded[i+index]
-                
-                #retrieve its bounding box coordinates
-                x_minIndex = x_min[index]
-                y_minIndex = y_min[index]
-                x_maxIndex = x_max[index]
-                y_maxIndex = y_max[index]
-                start_point = (x_minIndex, y_minIndex)
-                end_point = (x_maxIndex, y_maxIndex)
-
-                xCenter = int(abs(x_minIndex + x_maxIndex)/2)-40
-                yCenter = int(abs(y_minIndex + y_maxIndex)/2)+40
-
-                if(pred_label==1): #predicted GoodSeed - green colour
-                    color=(0,255,0)
-                    text='good'
-                else: #predicted BadSeed - red colour
-                    color=(0,0,255)
-                    text='bad'
-
-                #draw bounding box around the seed based on its coordinates + colour according to the predicted label
-                img = cv2.rectangle(img, start_point, end_point, color, 10)
-                #add label (1,2,3...) for testing only
-                img = cv2.putText(img, text, (xCenter,yCenter), cv2.FONT_HERSHEY_SIMPLEX, 2, (255,255,255), 10, cv2.LINE_AA)
-                #after drawing bbox for each seed in the view image, save it to the directory
-            name= view[j] + '_S' + str(data.iloc[i][0]) + '.jpg'
-            if(good):
-                cv2.imwrite(os.path.join(path_to_results_good_seeds, name),img)
-            else:
-                cv2.imwrite(os.path.join(path_to_results_bad_seeds, name),img)
-            
-        i = i + numberOfSeeds
-    print("Saved.")
-
+    save_results_corr_image(path_to_results_bad_seeds,path_to_results_good_seeds, len(testData), predictedLabelThresholded, seed_set, seed_type)
 
 def convertLabel(labelOnes):
   outputLabel = []

@@ -6,7 +6,7 @@ sys.path.insert(0, os.getcwd() + "/../../../General_Helper_Function/")
 
 from readBoundingBoxCSV import readBoundingBoxCSV
 
-def save_results_corr_image(path_to_results_bad_seeds, path_to_results_good_seeds, len_testData, predict_labels, seed_set, type):
+def save_results_corr_image(path_to_results_bad_seeds, path_to_results_good_seeds, len_testData, predict_labels, seed_set, seed_type):
     isExist_bad = os.path.exists(path_to_results_bad_seeds)
     isExist_good = os.path.exists(path_to_results_good_seeds)
 
@@ -34,7 +34,7 @@ def save_results_corr_image(path_to_results_bad_seeds, path_to_results_good_seed
     i=0
     while i < len_testData:
     #set paths to img and bbox according to the set index
-        if(type[i] == "Good_seeds"): #good seeds 9 and 10
+        if(seed_type[i] == "Good_seeds"): #good seeds 9 and 10
             img_path = path_to_goodseeds + str(seed_set[i]) + '/'
             bbox_path = path_to_bbox_goodseeds + str(seed_set[i]) + '/'
             good = True
@@ -44,7 +44,7 @@ def save_results_corr_image(path_to_results_bad_seeds, path_to_results_good_seed
             good = False
 
         for j in range(len(view)):
-            print("Saving Classification Set", str(seed_set[i]), str(type[i]) ,view[j])
+            print("Saving Classification Set", str(seed_set[i]), str(seed_type[i]) ,view[j])
             img_path_view = img_path + view[j] + '_S' + str(seed_set[i]) + '.jpg'
             bbox_path_view = bbox_path +  view[j] + '/'
             x_min, y_min, x_max, y_max = readBoundingBoxCSV(bbox_path_view, True)

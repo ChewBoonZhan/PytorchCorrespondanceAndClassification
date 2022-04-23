@@ -92,8 +92,8 @@ def evaluate_pixel(pixel_train, pixel_test):
     
     image_paths_test = []
     for i in np.array(testData)[:, 0, 0]:
-        image_paths_test.append(i.rsplit('\\', 1)[0])
-    
+        image_paths_test.append(i)
+
     false_score_good_pixel, false_score_bad_pixel, true_score_good_pixel, true_score_bad_pixel, total_bad_seeds_pixel, total_good_seeds_pixel = save_results_csv(path, path_csv_pixel, true_classes_pixel, predict_classes_pixel, image_paths_test)
 
     print("\nTotal bad testing seeds: ", total_bad_seeds_pixel)
@@ -108,11 +108,11 @@ def evaluate_pixel(pixel_train, pixel_test):
     path_to_results_good_seeds = os.getcwd()+ '/../../../Data/ProcessedData/SIFT_try/Classification_results_Pixel/Good_seeds/' 
 
     seed_set = []
-    type = []
+    seed_type = []
 
     for i in np.array(image_paths_test):
         seed_set.append(i.split('/')[-3].split('S')[1]) # set of seeds
-        type.append(i.split('/')[-4]) # type of seeds
+        seed_type.append(i.split('/')[-4]) # type of seeds
 
-    save_results_corr_image(path_to_results_bad_seeds,path_to_results_good_seeds, len(testData), y_pred, seed_set, type)
+    save_results_corr_image(path_to_results_bad_seeds,path_to_results_good_seeds, len(testData), y_pred, seed_set, seed_type)
     
