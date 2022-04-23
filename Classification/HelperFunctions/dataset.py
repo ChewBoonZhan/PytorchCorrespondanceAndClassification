@@ -35,7 +35,7 @@ def loadTrainData():
                 for view in views: #return top.jpg, right.jpg,...
                     view_name= view + '.jpg'
                     path_to_seed_view = os.path.join(path_to_seed, view_name) #'.../S1/Seed1/top.jpg'
-
+                    path_to_seed_view = path_to_seed_view.replace(os.sep, "/")
                     img_seed.append((path_to_seed_view,0)) #['.../S1/Seed1/top.jpg', '.../S1/Seed1/right.jpg',....]
                     writer.writerow([path_to_seed_view, 0])
 
@@ -60,7 +60,7 @@ def loadTrainData():
                 for view in views: #return top.jpg, right.jpg,...
                     view_name= view + '.jpg'
                     path_to_seed_view = os.path.join(path_to_seed, view_name) #'.../S1/Seed1/top.jpg'
-        
+                    path_to_seed_view = path_to_seed_view.replace(os.sep, "/")
                     img_seed.append((path_to_seed_view,1)) #['.../S1/Seed1/top.jpg', '.../S1/Seed1/right.jpg',....]
                     writer.writerow([path_to_seed_view, 1])
 
@@ -102,7 +102,7 @@ def loadTestData():
                 for view in views: #return top.jpg, right.jpg,...
                     view_name= view + '.jpg'
                     path_to_seed_view = os.path.join(path_to_seed, view_name) #'.../S10/Seed1/top.jpg'
-
+                    path_to_seed_view = path_to_seed_view.replace(os.sep, "/")
                     img_seed.append((path_to_seed_view,0)) #['.../S10/Seed1/top.jpg', '.../S10/Seed1/right.jpg',....]
                     writer.writerow([path_to_seed_view, 0])
 
@@ -128,6 +128,7 @@ def loadTestData():
 
                     view_name= view + '.jpg'
                     path_to_seed_view = os.path.join(path_to_seed, view_name) #'.../S9/Seed1/top.jpg'
+                    path_to_seed_view = path_to_seed_view.replace(os.sep, "/")
                     img_seed.append((path_to_seed_view,1)) #['.../S9/Seed1/top.jpg', '.../S9/Seed1/right.jpg',....]
                     writer.writerow([path_to_seed_view, 1])
 
