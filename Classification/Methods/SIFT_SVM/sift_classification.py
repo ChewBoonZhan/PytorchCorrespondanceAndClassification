@@ -26,19 +26,22 @@ k=1000
 
 def sift_extract():
 
-    #shuffle
+    #shuffle training seeds
     np.random.shuffle(trainData) 
     
     #unzip data
     image_paths_train, train_labels = zip(*trainData) #y -> labels 1 = good 0 = bad
     image_paths_test, test_labels = zip(*testData)
 
+    #SIFT + create bag of features for training and testing seeds
     train_list, train_features, voc, stdslr = sift_bof_train(image_paths_train)
     test_list, test_features = sift_bof_test(image_paths_test, voc, stdslr)
 
+    #train and test svm model
     pred_labels, true_classes_sift, predict_classes_sift = svm(train_features, train_labels, test_features, test_labels)
     
-    return test_labels, pred_labels, true_classes_sift, predict_classes_sift, image_paths_test
+    #evaluate results
+    evaluate_sift(test_labels, pred_labels, true_classes_sift, predict_classes_sift, image_paths_test)
 
 
 def sift_bof_train(image_paths_train):
@@ -112,7 +115,8 @@ def sift_bof_test(image_paths_test, voc, stdslr):
             
             for w in words:
                 test_features[i][w]+=1 
-
+    
+    #standardize scaling
     test_features=stdslr.transform(test_features)
 
     return test_list, test_features

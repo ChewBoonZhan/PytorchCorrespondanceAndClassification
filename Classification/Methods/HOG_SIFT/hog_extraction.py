@@ -22,7 +22,7 @@ def hog_extract():
    testData = loadTestData()
 
    #training features and hog images
-   feature = []
+   feature = [] #example: [[hog of seed1 top],[hog of seed1 left],.....,[hog of seed2 top],[...],[...],....]
    hog_im = []
 
    #testing features and hog images 
@@ -47,10 +47,6 @@ def hog_extract():
             hog_set.append(hog_image)
             hog_im.append(hog_set)
 
-   #feature = np.array(feature)
-   #hog_im = np.array(hog_im)
-   #print(feature.shape)
-   #feature = feature.reshape(feature.shape[0],feature.shape[2])
 
    #perform hog on testing seeds   
    print("\nExtracting HOG features on Testing datasets...")
@@ -124,4 +120,4 @@ def create_bof(feature, feature_test):
   test_hog_features=stdslr.transform(test_hog_features)
   print(test_hog_features.shape)
 
-  return train_hog_features, test_hog_features
+  return train_hog_features, test_hog_features #bag of features

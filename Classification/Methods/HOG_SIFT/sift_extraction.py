@@ -14,19 +14,18 @@ from dataset_sift import loadTestData,loadTrainData
 
 sift = cv2.SIFT_create()
 
-
-k=1000
+k=1000 #cluster size
 
 def sift_extract():
 
     trainData = loadTrainData()
     testData = loadTestData()
 
-    #shuffle
+    #shuffle training data
     np.random.shuffle(trainData) 
     
     #unzip data
-    image_paths_train, train_labels = zip(*trainData) #y -> labels 1 = good 0 = bad
+    image_paths_train, train_labels = zip(*trainData)
     image_paths_test, test_labels = zip(*testData)
 
     train_list, train_features, voc, stdslr = sift_bof_train(image_paths_train)
@@ -110,5 +109,5 @@ def sift_bof_test(image_paths_test, voc, stdslr):
 
     test_features=stdslr.transform(test_features)
 
-    return test_list, test_features
+    return test_list, test_features 
 

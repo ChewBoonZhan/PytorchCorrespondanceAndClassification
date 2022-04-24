@@ -17,10 +17,12 @@ from readBoundingBoxCSV import readBoundingBoxCSV
 
 def find_correspondence( seed_type, set, methodUsed): #Bad seeds Good seeds
 
-  print('Finding correspondence for ' , seed_type, ' Set ', set)
+  #source: front
+  #destination: top, right, left, rear
+  print('\nFinding correspondence for ' , seed_type, ' Set ', set)
 
-  #set image path to the CROPPED images directory
-  #assuming the cropped images are saved to SIFT_try folder
+  #set image path to the CROPPED images (for a set of 5 views) 
+  #example: SIFT_try/Bad_seeds/S2/front_S2.jpg
   src_img_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/'+ seed_type + '/S' + set + '/front_S' + set +'.jpg'
   top_img_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/'+ seed_type + '/S' + set + '/top_S' + set +'.jpg'  
   right_img_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/'+ seed_type + '/S' + set + '/right_S' + set +'.jpg'
@@ -28,50 +30,35 @@ def find_correspondence( seed_type, set, methodUsed): #Bad seeds Good seeds
   rear_img_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/'+ seed_type + '/S' + set + '/rear_S' + set +'.jpg'
 
   #set paths to bounding box csv
-  #example: SIFT_try/BBOX/Bad_seeds/S2/top/
+  #example: SIFT_try/BBOX/Bad_seeds/S2/front/
   src_bbox_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/' + seed_type + '/S' + set + '/front/'
+  top_bbox_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/' + seed_type + '/S' + set + '/top/'  
   right_bbox_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/' + seed_type + '/S' + set + '/right/'
   left_bbox_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/' + seed_type + '/S' + set + '/left/'
-  top_bbox_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/' + seed_type + '/S' + set + '/top/'  
   rear_bbox_path = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/BBOX/' + seed_type + '/S' + set + '/rear/'
 
-  #compute sift points
-  #options: extract_sift / extract_sift_lines / extract_sift_lines_canny
-  #image_src, sift_image_src, keypoints_src, descriptors_src = extract_sift_lines(src_img_path, src_bbox_path) #top
-  #image_right, sift_image_right, keypoints_right, descriptors_right = extract_sift_lines(right_img_path, right_bbox_path) 
-  #image_left, sift_image_left, keypoints_left, descriptors_left = extract_sift_lines(left_img_path, left_bbox_path) 
-  #image_front, sift_image_front, keypoints_front, descriptors_front = extract_sift_lines(front_img_path, front_bbox_path) 
-  #image_rear, sift_image_rear, keypoints_rear, descriptors_rear = extract_sift_lines(rear_img_path, rear_bbox_path) 
-
-  #if original method
-  image_src, sift_image_src, keypoints_src, descriptors_src = extract_sift_lines_canny(src_img_path, src_bbox_path) #top
+  #apply canny edges and extract sift features 
+  image_src, sift_image_src, keypoints_src, descriptors_src = extract_sift_lines_canny(src_img_path, src_bbox_path) 
+  image_top, sift_image_top, keypoints_top, descriptors_top = extract_sift_lines_canny(top_img_path, top_bbox_path) 
   image_right, sift_image_right, keypoints_right, descriptors_right = extract_sift_lines_canny(right_img_path, right_bbox_path) 
   image_left, sift_image_left, keypoints_left, descriptors_left = extract_sift_lines_canny(left_img_path, left_bbox_path) 
-  image_top, sift_image_top, keypoints_top, descriptors_top = extract_sift_lines_canny(top_img_path, top_bbox_path) 
   image_rear, sift_image_rear, keypoints_rear, descriptors_rear = extract_sift_lines_canny(rear_img_path, rear_bbox_path) 
 
-  #save in a dict to return -> can be used for classfication training later
+  #save in a dict
   sift_src_dict = {'keypoints_src': keypoints_src, 'descriptors_src': descriptors_src}
+  sift_top_dict = {'keypoints_dst': keypoints_top, 'descriptors_dst': descriptors_top}
   sift_right_dict = {'keypoints_dst': keypoints_right, 'descriptors_dst': descriptors_right}
   sift_left_dict = {'keypoints_dst': keypoints_left, 'descriptors_dst': descriptors_left}
-  sift_top_dict = {'keypoints_dst': keypoints_top, 'descriptors_dst': descriptors_top}
   sift_rear_dict = {'keypoints_dst': keypoints_rear, 'descriptors_dst': descriptors_rear}
 
-  #get homography matrix based on SIFT
-  #need to manipulate get_homography input arguments to take in dicts to retrieve
+  #get homography matrix for each pair, based on features extracted
+  homoMatrix_Front2Top = get_homography(sift_src_dict,sift_top_dict)
   homoMatrix_Front2Right = get_homography(sift_src_dict,sift_right_dict)
   homoMatrix_Front2Left = get_homography(sift_src_dict,sift_left_dict)
-  homoMatrix_Front2Top = get_homography(sift_src_dict,sift_top_dict)
   homoMatrix_Front2Rear = get_homography(sift_src_dict,sift_rear_dict)
 
-  #save the homography matrices of each Top x View pair to a dict
-  #sift_homo_matrices = {'Top2Right': homoMatrix_Top2Right, 'Top2Left': homoMatrix_Top2Left, 'Top2Front': homoMatrix_Top2Front, 'Top2Rear': homoMatrix_Top2Rear}
-
-  #retrieve bounding box csv of the cropped top image (src)
-  #path_to_src_bbox = 'SIFT_try/BBOX/' + seed_type + '/S' + set + '/top/'
+  #retrieve bounding box csv of the cropped source image
   (x_min, y_min, x_max, y_max) = readBoundingBoxCSV(src_bbox_path)
-
-  #(x_min, y_min, x_max, y_max) = readBoundingBoxCSV("SIFT_try/BBOX/Bad_seeds/S2/top/")
 
   boundingBox_src = {
     "x_min":x_min,
@@ -81,15 +68,15 @@ def find_correspondence( seed_type, set, methodUsed): #Bad seeds Good seeds
   }
 
 
-  #form corresponding bounding boxes for each Top x View pair
+  #form corresponding bounding boxes for each Front x View pair
   imageOut_FrontRight, imageOut_Right = form_corresponding_bounding_boxes(image_src, image_right, homoMatrix_Front2Right, boundingBox_src)
-  imageOut_FrontLeft, imageOut_Left = form_corresponding_bounding_boxes(image_src, image_left, homoMatrix_Front2Left, boundingBox_src)
   imageOut_FrontTop, imageOut_Top = form_corresponding_bounding_boxes(image_src, image_top, homoMatrix_Front2Top, boundingBox_src)
+  imageOut_FrontLeft, imageOut_Left = form_corresponding_bounding_boxes(image_src, image_left, homoMatrix_Front2Left, boundingBox_src)
   imageOut_FrontRear, imageOut_Rear = form_corresponding_bounding_boxes(image_src, image_rear, homoMatrix_Front2Rear, boundingBox_src)
 
 
   #save the output images to a "Results" folder, varied according to method
-  #set path. Example: 'SIFT_try/Bad_seeds/S2/Results_lines_Canny/xyz.jpg'
+  #example: 'SIFT_try/Bad_seeds/S2/Results_lines_Canny/xyz.jpg'
   path_to_results = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/'+ seed_type + '/S' + set + '/Results_' + methodUsed + "/"
 
     # Check whether the specified path exists or not
@@ -102,7 +89,7 @@ def find_correspondence( seed_type, set, methodUsed): #Bad seeds Good seeds
 
   #merge and save images to show Results 
   print("Saving images of correspondence for ", seed_type, " Set ", set, " to folder")
+  cv2.imwrite(os.path.join(path_to_results, 'correspondence_Front2Top.jpg'), merge_images_v(imageOut_FrontTop, imageOut_Top))
   cv2.imwrite(os.path.join(path_to_results, 'correspondence_Front2Right.jpg'), merge_images_v(imageOut_FrontRight, imageOut_Right))
   cv2.imwrite(os.path.join(path_to_results, 'correspondence_Front2Left.jpg'), merge_images_v(imageOut_FrontLeft, imageOut_Left))
-  cv2.imwrite(os.path.join(path_to_results, 'correspondence_Front2Top.jpg'), merge_images_v(imageOut_FrontTop, imageOut_Top))
   cv2.imwrite(os.path.join(path_to_results, 'correspondence_Front2Rear.jpg'), merge_images_v(imageOut_FrontRear, imageOut_Rear))

@@ -7,7 +7,7 @@ sift = cv2.SIFT_create()
 # Define function to extract sift feature points from a given image
 def extract_sift(imagepath):
   
-  print('Extracting SIFT features points for {}'.format(imagepath))
+  #print('Extracting SIFT features points for {}'.format(imagepath))
 
   image = cv2.imread(imagepath)
 

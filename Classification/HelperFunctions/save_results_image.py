@@ -43,24 +43,22 @@ def save_results_image(path_to_results_bad_seeds, path_to_results_good_seeds, pr
           img_path = path_to_goodseeds + str(i) + '/'
           bbox_path = path_to_bbox_goodseeds + str(i) + '/'
           good = True
-          seed_type="Good"
+          seed_type="Good_seeds"
        else: #bad seeds set 10,11,12
            img_path = path_to_badseeds + str(i) + '/'
            bbox_path = path_to_bbox_badseeds + str(i) + '/'
            good = False
-           seed_type="Bad"
+           seed_type="Bad_seeds"
 
        for j in range(len(view)): #for each view of the seed set 
 
           #set path to the view image
           img_path_view = img_path + view[j] + '_S' + str(i) + '.jpg'
-          #print(img_path_view)
           img=cv2.imread(img_path_view)
-          print("Saving Classification Set ",str(i), " ",seed_type,"_seeds ", view[j] )
+          print("Saving Classification Set ",str(i), seed_type, view[j] )
 
           #set path to the bbox of the view image
           bbox_path_view = bbox_path + view[j] + '/'
-          #print(bbox_path_view)
           x_min, y_min, x_max, y_max = readBoundingBoxCSV(bbox_path_view)
 
           numberOfSeeds = x_max.shape[0]
@@ -81,9 +79,9 @@ def save_results_image(path_to_results_bad_seeds, path_to_results_good_seeds, pr
 
               #get its predicted label
               pred_label = predict_labels[(5*numberOfSeeds_prev)+j+(index*5)]
+              
               #check if we're retrieving from the correct image 
-              test_img = image_paths[(5*numberOfSeeds_prev)+j+(index*5)]
-
+              #test_img = image_paths[(5*numberOfSeeds_prev)+j+(index*5)]
               #print(test_img)
               #print(pred_label,"Set ",str(i)," ",view[j], " Seed ",index+1)
 

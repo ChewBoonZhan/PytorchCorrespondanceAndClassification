@@ -16,8 +16,7 @@ def loadTrainData():
   
         print('\nLoading Training Bad seeds Set' + str(i))
         path_to_set = training_path_bad + '/S' + str(i) # 'SIFT_try/Training/Bad_seeds/S1'
-
-        numberOfSeeds=len([name for name in os.listdir(path_to_set)])
+        numberOfSeeds=len([name for name in os.listdir(path_to_set)]) #to get training seeds in ascending order seed 1,2,3..
   
         for seed_index in (n+1 for n in range(numberOfSeeds)):
                 
@@ -25,7 +24,7 @@ def loadTrainData():
 
             path_to_seed = os.path.join(path_to_set,seed) # 'SIFT_try/Training/Bad_seeds/S1/Seed1'
 
-            for view in views: #return top.jpg, right.jpg,...
+            for view in views: 
 
                view_name = view+".jpg"
                path_to_seed_view = os.path.join(path_to_seed, view_name) # '.../S1/Seed1/top.jpg'
@@ -36,7 +35,6 @@ def loadTrainData():
   
         print('\nLoading Training Good seeds Set' + str(i))
         path_to_set = training_path_good + '/S' + str(i) # 'SIFT_try/Training/Good_seeds/S1'
-
         numberOfSeeds=len([name for name in os.listdir(path_to_set)])
   
         for seed_index in (n+1 for n in range(numberOfSeeds)):
@@ -45,7 +43,7 @@ def loadTrainData():
 
             path_to_seed = os.path.join(path_to_set,seed) # 'SIFT_try/Training/Good_seeds/S1/Seed1'
 
-            for view in views: #return top.jpg, right.jpg,...
+            for view in views:
                 view_name = view+".jpg"
                 path_to_seed_view = os.path.join(path_to_seed, view_name) #'.../S1/Seed1/top.jpg'
                 trainData.append((path_to_seed_view,1))
@@ -87,7 +85,6 @@ def loadTestData():
   
         print('\nExtract Testing Good seeds Set' + str(i))
         path_to_set = testing_path_good + '/S' + str(i) # 'SIFT_try/Testing/Good_seeds/S9'
-
         numberOfSeeds=len([name for name in os.listdir(path_to_set)])
   
         for seed_index in (n+1 for n in range(numberOfSeeds)):
