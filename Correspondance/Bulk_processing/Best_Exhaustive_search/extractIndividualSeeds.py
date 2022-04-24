@@ -6,6 +6,7 @@ import sys
 from extractSeeds import extractSeeds
 from loadImageExtractSeed import loadImage
 
+#this method will extract individual corresponding seeds (from all 5 views) and save them together in a folder
 def extract_seeds():
 
   pathTrain = os.getcwd() + '/../../../Data/ProcessedData/SIFT_try/Training'
@@ -64,9 +65,9 @@ def extract_seeds():
       os.makedirs(path)
 
     print("Cropping good seeds Set" + str(index+1) + "...")
+
     #load set
     image_top = loadImage("Good_seeds", "top", index+1, False)
-    #print(image_top.shape)
     image_right = loadImage("Good_seeds", "right", index+1, False)
     image_left = loadImage("Good_seeds", "left", index+1, False)
     image_front = loadImage("Good_seeds", "front", index+1, False)

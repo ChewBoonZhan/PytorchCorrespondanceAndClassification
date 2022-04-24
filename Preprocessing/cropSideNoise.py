@@ -21,7 +21,7 @@ def cropSideNoise(seedImageCollection, seedType, imageViewAngle, setNumber):
   x_max = np.array(df.iloc[:,3].values)
   y_max = np.array(df.iloc[:,4].values)
 
-  # new corresponding label
+  # retrieve their assigned corresponding labels
   c_label = np.array(df.iloc[:,6].values)
 
   imgShape = seedImageCollection.shape
